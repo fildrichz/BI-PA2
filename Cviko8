@@ -1,0 +1,300 @@
+#include <iostream>
+#include <stdexcept>
+#include <memory>
+#include <string>
+#include <list>
+#include <cassert>
+
+
+#define LVL 4
+
+using namespace std;
+
+struct Item {
+
+
+    std::string name;
+    unsigned int ItWeight;
+
+    virtual int weight() const;
+
+    
+
+    virtual std::string toString(int spaces = 0) const;
+
+    friend std::ostream& operator << (std::ostream& out, const Item& item) {
+        out << item.toString() << std::endl;
+        return out;
+    }
+
+    Item(const std::string& name, const unsigned int weight) : name(name), ItWeight(weight) {};
+
+
+
+};
+
+int Item::weight() const
+{
+    return ItWeight;
+}
+
+
+
+std::string Item::toString(int spaces) const
+{
+    string retval;
+
+    for (int i = 0; i < spaces; i++)
+        retval += "   ";
+
+    retval += name;
+
+    retval += "\n";
+
+
+    return retval;
+}
+
+struct SimpleItem : Item {
+    static std::shared_ptr<SimpleItem> create(const std::string& name, size_t weight) {
+        return std::shared_ptr<SimpleItem>{ new SimpleItem(name, weight) };
+        // Nebo
+        // return std::make_shared<SimpleItem>(name, weight);
+    }
+
+
+
+private:
+    SimpleItem(const std::string& name, size_t weight) : Item(name, weight) {
+    }
+};
+
+// Bag sám o sobě váží 0
+struct Bag : Item {
+
+    unsigned int max_weight;
+    unsigned int max_items;
+    list<shared_ptr<Item>> contains;
+
+    static std::shared_ptr<Bag> create(const std::string& name, size_t max_items, size_t max_weight) {
+        // TODO
+        return std::shared_ptr<Bag>{ new Bag(name, max_items, max_weight) };
+    }
+
+    void add(shared_ptr<Item> added);
+
+    int weight() const override;
+
+    string toString(int spaces = 0) const override;
+
+private:
+    Bag(const std::string & name, size_t max_items, size_t max_weight): Item(name, 0), max_items(max_items), max_weight(max_weight) {
+        // TODO
+    }
+
+};
+
+string Bag::toString(int spaces) const
+{
+    string retval;
+
+    for (int i = 0; i < spaces; i++)
+        retval += "   ";
+
+    retval += name;
+
+    retval += "\n";
+
+    for (auto a : contains)
+        retval += a->toString(spaces+1);
+
+
+    return retval;
+}
+
+int Bag::weight() const
+{
+    int result = 0;
+
+    for (auto a : contains)
+        result += a->weight();
+
+    return result;
+}
+
+void Bag::add(shared_ptr<Item> added)
+{
+    if (contains.size() == max_items) {
+        throw std::overflow_error("Too many items");
+        return;
+    }
+
+
+    if ((this->weight() + added->weight()) > max_weight) {
+        throw std::overflow_error("Too heavy");
+        return;
+    }
+
+    
+
+    contains.push_back(added);
+}
+
+
+#define TRY_CATCH(expr, exception, msg) \
+  try { \
+    expr; \
+    assert(false); \
+  } catch (const exception& e) { \
+    assert(e.what() == msg); \
+  }
+
+int main() {
+    using std::operator ""s;
+
+    auto batoh = Bag::create("Batoh", 15, 5'000); // Jméno, max počet věcí, max hmotnost
+    assert(batoh->weight() == 0);
+    batoh->add(SimpleItem::create("C++ v kostce", 500)); // Jméno, hmotnost
+    batoh->add(SimpleItem::create("Termoska", 1'500));
+    assert(batoh->weight() == 2000);
+
+    std::cout << *batoh << std::endl;;
+    // Vypíše:
+    // Batoh: bag of 2 items (2000):
+    //   C++ v kostce (500)
+    //   Termoska (1500)
+
+#if LVL >= 2
+  // Umíme vložit Bag do Bag a hezky vypsat
+
+    std::cout << "Level 2" << std::endl;
+    auto penezenka = Bag::create("Peněženka", 5, 100);
+    batoh->add(penezenka);
+    penezenka->add(SimpleItem::create("Stokoruna", 3));
+    penezenka->add(SimpleItem::create("Stokoruna", 3));
+    penezenka->add(SimpleItem::create("Pětikoruna", 15));
+    penezenka->add(SimpleItem::create("Pětikoruna", 15));
+    auto petikoruna = SimpleItem::create("Pětikoruna", 15);
+    penezenka->add(petikoruna);
+
+    assert(penezenka->weight() == 51);
+    assert(batoh->weight() == 2051);
+
+    std::cout << *batoh << std::endl;
+    // Vypíše:
+    // Batoh: bag of 3 items (2051):
+    //   C++ v kostce (500)
+    //   Termoska (1500)
+    //   Peněženka: bag of 5 items (51):
+    //     Stokoruna (3)
+    //     Stokoruna (3)
+    //     Pětikoruna (15)
+    //     Pětikoruna (15)
+    //     Pětikoruna (15)
+#endif
+
+#if LVL >= 3
+  // Výjimka pokud bychom přidali příliš mnoho věcí nebo batoh
+  // přetížili
+    std::cout << "Level 3" << std::endl;
+    TRY_CATCH(
+        penezenka->add(SimpleItem::create("Fotka", 2)),
+        std::overflow_error, "Too many items"s
+    )
+
+        TRY_CATCH(
+            batoh->add(SimpleItem::create("Zlatá cihla", 2'950)),
+            std::overflow_error, "Too heavy"s
+        )
+
+        // Stejný výpis jako v levelu 2
+        std::cout << *batoh << std::endl;
+#endif
+
+
+#if LVL >= 4
+    // Magické věci mají hmotnost 0 a pokud něco obsahuje
+    // magickou věc, je to také magické
+    std::cout << "Level 4" << std::endl;
+    assert(!batoh->is_magical());
+    batoh->add(MagicalItem::create("Kouzelnická hůlka"));
+    assert(batoh->is_magical());
+#endif
+
+#if LVL >= 5
+    // MagicalBag je Bag, který je magický, takže se do něj vejde
+    // libovolné množství věcí a nikdy nic neváží
+    std::cout << "Level 5" << std::endl;
+    {
+        auto magicky_pytlik = MagicalBag::create("Magický pytlík");
+        assert(magicky_pytlik->weight() == 0);
+        magicky_pytlik->add(batoh);
+        std::cout << *magicky_pytlik << std::endl;
+        assert(magicky_pytlik->weight() == 0);
+        assert(magicky_pytlik->is_magical());
+    }
+#endif
+
+
+    // Item může být v jednu chvíli jen v jednom jiném Bagu
+    // Přímo:
+#if LVL >= 6
+    std::cout << "Level 6" << std::endl;
+    TRY_CATCH(
+        batoh->add(penezenka),
+        std::logic_error, "Already in container"s
+    )
+#endif
+
+        // Nepřímo:
+#if LVL >= 7
+        std::cout << "Level 7" << std::endl;
+    TRY_CATCH(
+        batoh->add(petikoruna),
+        std::logic_error, "Already in container"s
+    )
+#endif
+
+        // Po zániku vnějšího Bagu, lze objekt vložit do jiného Bagu
+#if LVL >= 8
+        std::cout << "Level 8" << std::endl;
+    for (int i = 0; i < 2; i++) {
+        auto pytel = Bag::create("Pytel", 100, 100'000);
+        pytel->add(batoh);
+        std::cout << *pytel << std::endl;
+    }
+#endif
+
+
+    // Bag nemůže být sám v sobě
+#if LVL >= 9
+    std::cout << "Level 9" << std::endl;
+    TRY_CATCH(
+        batoh->add(batoh)
+        std::logic_error, "Cannot put Bag into itself"s
+    )
+#endif
+
+        // A to ani nepřímo
+#if LVL >= 99
+        std::cout << "Level 99" << std::endl;
+    auto pytel = Bag::create("Pytel 1", 100, 100'000);
+    pytel->add(batoh);
+
+    for (int i = 2; i < 20; i++) {
+        char buf[100];
+        sprintf(buf, "Pytel %d", i);
+        auto dalsi_pytel = Bag::create(buf, 100, 100'000);
+        dalsi_pytel->add(pytel);
+        pytel = dalsi_pytel;
+    }
+
+    TRY_CATCH(
+        batoh->add(pytel),
+        std::logic_error, "Cannot put Bag into itself"s
+    )
+#endif
+
+        std::cout << "Level " << LVL << " done" << std::endl;
+}
+
