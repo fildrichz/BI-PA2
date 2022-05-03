@@ -1,0 +1,99 @@
+
+
+menu_player:
+-methods:
+--move_colour_by_one
+--change_controls
+
+-attributes:
+--colour
+--player_controls
+
+there will be case method to deal with following commands, based on user input
+"type "maps?" to write out available maps"
+"type "high score" to get current high score"
+"type "i want to play <name of map>" to set current map to <name of map>"
+"type "change bomber <number> controls" to change between player or computer controling bomber"
+"type "high score" to get current high score"
+"type "start" to change the name"
+"type "exit" to exit the game"
+
+-after starting the game, new instance of "game" will be created
+----------------------------------------
+
+base_block:
+-methods:
+--colision_with_bomb
+--destruction
+--change_block_type(type)
+--move(pair<int x_coordinate, y_coordinate>)
+
+-attributes:
+--pair<int x_coordinate, y_coordinate>
+--block_type
+--destrucibility
+--passability
+
+bomb: public base_block:
+-methods
+--explode
+
+spike: public base_block:
+-destroys bot when walked on
+
+
+-attributes
+--seconds till explosion
+
+moving_object: public base_block:
+-protected methods
+--walk(direction,speed)
+
+-protected attributes:
+--int walkspeed
+--int lives
+
+bomber: public moving_object:
+-methods
+--place_bomb
+--touched_by_ghost
+--additional methods based on buffs
+
+-atributes:
+--int points
+--int["number of buffs in game"] buffs;
+--bomb[2] placed_bombs
+
+
+game_ghost: public moving_object
+-"methods for controlling ghosts"
+
+bomber_player: public bomber:
+attributes
+--points
+
+-"controls for bomber by player"
+
+bomber_robot: public bomber:
+-"bomber simulated by computer"
+
+---------------------------------
+
+game:
+-attributes:
+--vector<vector<*base_block>> board;
+--vector<shared_ptr<bomber_player>> players;
+--vector<shared_ptr<bomber_robots>> robots;
+--vector<shared_ptr<game_ghosts>> ghosts;
+--vector<shared_ptr<bomb>> bombs;
+
+-methods:
+--remove_player(
+	if all players removed, game_over
+)
+--game_over(
+	upgrade current high score
+	clean console
+	return to start of program
+	delete game instance, destruct all atributes...
+)
