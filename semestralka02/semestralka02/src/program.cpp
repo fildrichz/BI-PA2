@@ -1,30 +1,84 @@
 
 #include "program.hpp"
 #include <iostream>
-
+#include <fstream>
 
 //private methods
 
 bool program::startScreen() {
+	std::cout << "Welcome to BOMBERMAN!" << std::endl;
+	std::cout << "Choose which level you would like to play: " << std::endl;
 
+	if (!showLevels()) {
+		return false;
+	}
+
+	if (!loadLevel()) {
+		return false;
+	}
+
+	std::cout << "level loaded" << std::endl;
 }
 
 bool program::showLevels() {
 
+	int i = 1;
+
+	for (i; i < 20; i++)
+	{
+		std::string level = "./levels/level";
+		level += std::to_string(i);
+		std::ifstream f(level);
+		if (!f.is_open())
+		{
+			break;
+		}
+		std::cout << "level " << i << " available" << std::endl;
+	}
+
+	if (i == 1) {
+		std::cout << "no levels available" << std::endl;
+		return false;
+	}
+
+	return true;
 }
 
 
-bool program::loadLevel(std::string name){
+bool program::loadLevel(){
+	
+	int userLvl;
+
+	std::cout << "Index of level you would like to play? ";
+
+	std::cin >> userLvl;
+	
+	fileNameLevel += std::to_string(userLvl);
+
+	std::ifstream f(fileNameLevel);
+
+
+	if (!f.is_open())
+	{
+		std::cout << "could not open file stream" << std::endl;
+		return false;
+	}
+
+
+	loadGrid(f);
+
+	loadBombers(f);
+
 
 }
 
 
-bool program::loadGrid(){
+bool program::loadGrid(std::ifstream & f){
 
 }
 
 
-bool program::loadBombers() {
+bool program::loadBombers(std::ifstream & f) {
 
 }
 
@@ -35,8 +89,7 @@ bool program::saveResults(const int & newBest) {
 
 //public methods
 
-program::program() {
-
+program::program(): fileNameLevel("./levels/level"), currBestScore(0) {
 }
 
 program::~program() {
@@ -65,8 +118,6 @@ bool program::run(){
 			std::cout << "error while saving results" << std::endl;
 			return false;
 			}
-
-
 
 	return true;
 

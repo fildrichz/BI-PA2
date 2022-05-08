@@ -1,0 +1,7 @@
+1
+xxxx
+x  x
+x  x
+xxxx
+h 0 0
+h 1 1

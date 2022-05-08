@@ -2,6 +2,7 @@
 
 #include "game.hpp"
 #include <string>
+#include <fstream>
 
 class program {
 
@@ -10,6 +11,7 @@ class program {
 	*/
 	std::string fileNameLevel;
 	game game;
+	int currBestScore;
 
 
 	/**
@@ -34,14 +36,14 @@ class program {
 	 * \param name, name of the level
 	 * \return False if any part failed to load, else True
 	 */
-	bool loadLevel(std::string name);
+	bool loadLevel();
 
 	/**
 	 * Attemts to load grid into game instance.
 	 * 
 	 * \return False if failed to load grid, else True
 	 */
-	bool loadGrid();
+	bool loadGrid(std::ifstream & f);
 
 
 	/**
@@ -50,7 +52,7 @@ class program {
 	 * 
 	 * \return False if any bomber failed to load, else True
 	 */
-	bool loadBombers();
+	bool loadBombers(std::ifstream & f);
 
 
 	/**
@@ -59,12 +61,13 @@ class program {
 	 * 
 	 * \return False if fails to save for any reason, else True
 	 */
-	bool saveResults();
+	bool saveResults(const int& newBest);
 
 public:
 
 
 	program();
+
 	~program();
 
 	/**
