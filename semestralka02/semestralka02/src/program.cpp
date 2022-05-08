@@ -1,7 +1,5 @@
 
 #include "program.hpp"
-#include <iostream>
-#include <fstream>
 
 //private methods
 
@@ -30,9 +28,8 @@ bool program::showLevels() {
 		level += std::to_string(i);
 		std::ifstream f(level);
 		if (!f.is_open())
-		{
 			break;
-		}
+		
 		std::cout << "level " << i << " available" << std::endl;
 	}
 
@@ -65,20 +62,29 @@ bool program::loadLevel(){
 	}
 
 
-	loadGrid(f);
+	if (!game.loadGrid(f))
+	{
+		if (f.is_open())
+			f.close();
 
-	loadBombers(f);
+		std::cout << "failed to load grid" << std::endl;
+		return false;
+	}
 
+	if (!game.loadBombers(f))
+	{
+		if (f.is_open())
+			f.close();
+		
+		std::cout << "failed to load bombers" << std::endl;
+		return false;
+	}
 
-}
-
-
-bool program::loadGrid(std::ifstream & f){
-
-}
-
-
-bool program::loadBombers(std::ifstream & f) {
+	std::cout << "level loaded sucessfully" << std::endl;
+	if (f.is_open())
+		f.close();
+	
+	return true;
 
 }
 
@@ -93,7 +99,6 @@ program::program(): fileNameLevel("./levels/level"), currBestScore(0) {
 }
 
 program::~program() {
-
 }
 
 bool program::run(){
