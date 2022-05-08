@@ -61,6 +61,10 @@ bool program::loadLevel(){
 		return false;
 	}
 
+	std::string line;
+	getline(f, line);
+	currBestScore = stoi(line);
+
 
 	if (!game.loadGrid(f))
 	{
@@ -89,7 +93,27 @@ bool program::loadLevel(){
 }
 
 bool program::saveResults(const int & newBest) {
+	char target[21] = { 0 };
+	std::sprintf(target, "%020ld", newBest);
 
+	std::fstream fs(fileNameLevel, std::fstream::in | std::fstream::out);
+	if (fs.is_open())
+	{
+
+		for (int i = 0; i < (int)(sizeof(target) - 1); i++)
+		{
+			fs.put(target[i]);
+			fs.seekp(fs.tellp());
+		}
+
+		std::cout << "Score replaced" << '\n';
+
+		fs.close();
+	}
+	else
+	{
+		std::cout << "Failed to open" << '\n';
+	}
 }
 
 
