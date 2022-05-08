@@ -140,6 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="semestralka02.cpp" />
+    <ClCompile Include="src\mainMenu.cpp" />
+    <ClCompile Include="src\program.cpp" />
+    <ClCompile Include="src\game.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\game.hpp" />
+    <ClInclude Include="src\program.hpp" />
+    <ClInclude Include="src\mainMenu.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
