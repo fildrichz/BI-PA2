@@ -47,4 +47,7 @@ char baseBlock::display() const
 	return mask;
 }
 
+bool baseBlock::isPassable() const {
+	return passable;
+}
 

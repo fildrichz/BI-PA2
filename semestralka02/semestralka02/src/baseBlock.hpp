@@ -4,7 +4,7 @@
 #include <vector>
 
 class baseBlock {
-	unsigned int x, y;
+
 	bool explosionDebris;
 
 
@@ -16,6 +16,9 @@ protected:
 
 public:
 
+
+	unsigned int x, y;
+
 	std::shared_ptr<baseBlock> under;
 
 	unsigned int getX() const;
@@ -23,6 +26,8 @@ public:
 
 	baseBlock(const unsigned int x, const unsigned int y);
 	baseBlock(const unsigned int x, const unsigned int y, const char & mask);
+
+	bool isPassable() const;
 
 
 	virtual std::shared_ptr<baseBlock> ruin();
