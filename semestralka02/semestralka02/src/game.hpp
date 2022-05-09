@@ -9,6 +9,8 @@
 #include "bomb.hpp"
 #include "bomber.hpp"
 #include "grass.hpp"
+#include "sturdyBlock.hpp"
+#include "indestructibleBlock.hpp"
 
 class game {
 

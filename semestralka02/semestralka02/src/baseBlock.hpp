@@ -5,12 +5,12 @@
 
 class baseBlock {
 	unsigned int x, y;
-	char mask;
 	bool explosionDebris;
 
 
 protected:
 
+	char mask;
 	bool passable;
 	bool debrisCheck();
 

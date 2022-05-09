@@ -31,11 +31,14 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
          * \return 
          */
 
-    case '¨':
+    case 'X':
+        return std::make_shared<baseBlock>(sturdyBlock(collumn, row));
+
+    case ' ':
         return std::make_shared<baseBlock>(grass(collumn, row));
 
-    case 'x':
-        return std::make_shared<baseBlock>(baseBlock(collumn, row, 'x'));
+    case '#':
+        return std::make_shared<baseBlock>(indestructibleBlock(collumn, row));
 
 
     default:
@@ -77,14 +80,14 @@ bool game::loadGrid(std::ifstream& f) {
     while (getline(f, line))
     {
         std::vector< std::shared_ptr<baseBlock>> newrow;
-        newrow.push_back(create('i', 0, row));
+        newrow.push_back(create('#', 0, row));
         for (collumn = 0; collumn < line.length(); collumn++)
         {
             std::shared_ptr<baseBlock> created = create(line[collumn], collumn + 1, row);
             newrow.push_back(created);
         }
 
-        newrow.push_back(create('i', (line.length() + 1), row));
+        newrow.push_back(create('#', (line.length() + 1), row));
         board.push_back(newrow);
         row++;
     }
@@ -94,7 +97,7 @@ bool game::loadGrid(std::ifstream& f) {
     for (const auto & block : board[0])
     {
         collumn++;
-        newrow.push_back(create('i', block->getX(), 0));
+        newrow.push_back(create('#', block->getX(), 0));
     }
     board.insert(board.begin(), newrow);
 
@@ -103,7 +106,7 @@ bool game::loadGrid(std::ifstream& f) {
     for (const auto & block : board[0])
     {
         collumn++;
-        anotherrow.push_back(create('i', block->getX(), row));
+        anotherrow.push_back(create('#', block->getX(), row));
     }
     board.push_back(anotherrow);
 

@@ -36,7 +36,7 @@ std::shared_ptr<baseBlock> baseBlock::ruin()
 	if (under != nullptr)
 		return under;
 
-	return std::make_shared<baseBlock>(baseBlock(x, y));
+	return std::make_shared<baseBlock>(this);
 }
 
 char baseBlock::display() const
