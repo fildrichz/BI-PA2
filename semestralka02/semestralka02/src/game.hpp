@@ -1,9 +1,28 @@
 #pragma once
 
 #include <fstream>
+#include <vector>
+#include <iostream>
+
 #include "baseBlock.hpp"
+#include "movingBlock.hpp"
+#include "bomb.hpp"
+#include "bomber.hpp"
 
 class game {
+
+	std::vector< std::vector< std::shared_ptr<baseBlock>>> board;
+	std::vector< std::shared_ptr< movingBlock >> movingBlocks;
+	std::vector< std::shared_ptr< bomb >> bombs;
+	//std::vector< std::shared_ptr< bomber >> bombers;
+
+	unsigned int numOfActivePlayers;
+
+
+	std::shared_ptr<baseBlock> create(const char& entry, const int& collumn, const int& row);
+
+	void load_screen();
+
 
 public:
 
