@@ -31,8 +31,11 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
          * \return 
          */
 
-    case 'b':
-        return std::make_shared<baseBlock>(baseBlock(collumn, row));
+    case '¨':
+        return std::make_shared<baseBlock>(grass(collumn, row));
+
+    case 'x':
+        return std::make_shared<baseBlock>(baseBlock(collumn, row, 'x'));
 
 
     default:

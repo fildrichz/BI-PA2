@@ -8,6 +8,7 @@
 #include "movingBlock.hpp"
 #include "bomb.hpp"
 #include "bomber.hpp"
+#include "grass.hpp"
 
 class game {
 
