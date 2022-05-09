@@ -75,15 +75,6 @@ bool program::loadLevel(){
 		return false;
 	}
 
-	if (!game.loadBombers(f))
-	{
-		if (f.is_open())
-			f.close();
-		
-		std::cout << "failed to load bombers" << std::endl;
-		return false;
-	}
-
 	std::cout << "level loaded sucessfully" << std::endl;
 	if (f.is_open())
 		f.close();

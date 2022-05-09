@@ -1,7 +1,7 @@
 
 #include "game.hpp"
 
-std::shared_ptr<baseBlock> create(const char& entry, const int& collumn, const int& row)
+std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, const int& row)
 {
     switch (entry) //character from file
     {
@@ -64,18 +64,77 @@ void game::load_screen()
 
 }
 
-int game::doGame() {
-
-};
-
 
 
 bool game::loadGrid(std::ifstream& f) {
 
+    std::string line;
+    size_t row = 1;
+    size_t collumn = 0;
+    while (getline(f, line))
+    {
+        std::vector< std::shared_ptr<baseBlock>> newrow;
+        newrow.push_back(create('i', 0, row));
+        for (collumn = 0; collumn < line.length(); collumn++)
+        {
+            std::shared_ptr<baseBlock> created = create(line[collumn], collumn + 1, row);
+            newrow.push_back(created);
+        }
+
+        newrow.push_back(create('i', (line.length() + 1), row));
+        board.push_back(newrow);
+        row++;
+    }
+
+    collumn = 0;
+    std::vector< std::shared_ptr<baseBlock>> newrow;
+    for (const auto & block : board[0])
+    {
+        collumn++;
+        newrow.push_back(create('i', block->getX(), 0));
+    }
+    board.insert(board.begin(), newrow);
+
+    collumn = 0;
+    std::vector< std::shared_ptr<baseBlock>> anotherrow;
+    for (const auto & block : board[0])
+    {
+        collumn++;
+        anotherrow.push_back(create('i', block->getX(), row));
+    }
+    board.push_back(anotherrow);
 
 
 };
 
-bool game::loadBombers(std::ifstream& f) {
+
+game::game(): numOfActivePlayers(0) {
+}
+
+bool game::shouldContinue() const {
+    return true;
+}
+
+int game::doGame() {
+
+    while (shouldContinue()) {
+
+        std::cout << "moving blocks" << std::endl;
+
+        for (auto movingblock : movingBlocks) {
+            movingblock->move();
+            load_screen();
+        }
+
+        std::cout << "bomb actions" << std::endl;
+
+        for (auto bomb : bombs) {
+            bomb->bombProcess(board);
+        }
+
+        load_screen();
+        std::cout << "after bomb actions" << std::endl;
+
+    }
 
 };

@@ -23,8 +23,13 @@ class game {
 
 	void load_screen();
 
+	bool shouldContinue() const;
+
 
 public:
+
+
+	game();
 
 	/**
 	 * Runs game after it is loaded.
@@ -40,15 +45,6 @@ public:
 	 * \return False if failed to load grid, else True
 	 */
 	bool loadGrid(std::ifstream& f);
-
-
-	/**
-	 * Loads bombers based on level and player input. Player gets to choose Which mode the robots in level will be using
-	 * They can either be controlled by player, not move at all, or be controlled by computer
-	 *
-	 * \return False if any bomber failed to load, else True
-	 */
-	bool loadBombers(std::ifstream& f);
 
 
 };
