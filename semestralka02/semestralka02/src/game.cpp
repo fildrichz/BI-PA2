@@ -111,30 +111,63 @@ bool game::loadGrid(std::ifstream& f) {
 game::game(): numOfActivePlayers(0) {
 }
 
+
 bool game::shouldContinue() const {
+    unsigned int countPlayers = 0;
+    unsigned int countGhosts = 0;
+
+    for (auto& object : movingBlocks) {
+        if (object->isGhost())
+            countGhosts++;
+        if (object->isPlayer())
+            countPlayers++;
+    }
+
+    if (countPlayers == 0)
+        return false;
+
+    if (countPlayers == 1 && countGhosts == 0)
+        return false;
+
     return true;
+}
+
+int game::gameCleanUp() {
+
+    for (auto& object : movingBlocks) {
+        if (object->isPlayer())
+            std::cout << "player " << std::dynamic_pointer_cast<bomber>(object)->getName() << " has won!" << std::endl;
+            std::cout << "their score is " << std::dynamic_pointer_cast<bomber>(object)->score << std::endl;
+            return  std::dynamic_pointer_cast<bomber>(object)->score;
+    }
+    
+    std::cout << "The ghosts havw won!" << std::endl;
+    return 0;
 }
 
 int game::doGame() {
 
     while (shouldContinue()) {
 
-        std::cout << "moving blocks" << std::endl;
-
-        for (auto movingblock : movingBlocks) {
-            movingblock->move();
-            load_screen();
-        }
-
         std::cout << "bomb actions" << std::endl;
 
-        for (auto bomb : bombs) {
+        for (auto& bomb : bombs) {
             bomb->bombProcess(board);
         }
 
         load_screen();
         std::cout << "after bomb actions" << std::endl;
 
+
+        std::cout << "moving blocks" << std::endl;
+
+        for (auto & movingblock : movingBlocks) {
+            movingblock->move();
+            load_screen();
+        }
+
     }
+
+    return gameCleanUp();
 
 };

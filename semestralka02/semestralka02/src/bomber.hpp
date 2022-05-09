@@ -5,10 +5,14 @@
 
 class bomber: public movingBlock{
 
-	unsigned int score;
+
 	std::string playerName;
 
 public:
+
+	unsigned int score;
+
+	virtual std::string getName() const;
 
 	virtual bool placeBomb(std::vector< std::vector< std::shared_ptr<baseBlock>>> board, std::vector< std::shared_ptr< bomb >> bombs);
 

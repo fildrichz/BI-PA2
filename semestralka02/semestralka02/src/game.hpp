@@ -25,6 +25,8 @@ class game {
 
 	bool shouldContinue() const;
 
+	int gameCleanUp();
+
 
 public:
 
