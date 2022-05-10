@@ -32,18 +32,18 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
         std::cout << " shouldnt change " << board.size() << " " << board[0].size() << std::endl;
 
 
-        if ((saved_row + where) < (board.size())) {
+        if ((saved_row + where) < (board[0].size())) {
             std::cout << "checking row" << std::endl;
             board[saved_col][saved_row + where] = board[saved_col][saved_row + where]->ruin();
             bonusScore++;
         }
 
-
-        if ((saved_col + where) < (board[0].size())) {
-            std::cout << "checking col" << std::endl;
-            board[saved_col + where][saved_row] = board[saved_col + where][saved_row]->ruin();
-            bonusScore++;
-        }
+        if(where!=0)
+            if ((saved_col + where) < (board.size())) {
+                std::cout << "checking col" << std::endl;
+                board[saved_col + where][saved_row] = board[saved_col + where][saved_row]->ruin();
+                bonusScore++;
+            }
 
     }
 
