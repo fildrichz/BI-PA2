@@ -11,6 +11,8 @@ bool program::startScreen() {
 		return false;
 	}
 
+	std::cout << "passed show level" << std::endl;
+
 	if (!loadLevel()) {
 		return false;
 	}
@@ -25,7 +27,7 @@ bool program::showLevels() {
 
 	for (; i < 20; i++)
 	{
-		std::string level = "./levels/level";
+		std::string level = "./src/levels/level";
 		level += std::to_string(i);
 		std::ifstream f(level);
 		if (!f.is_open())
@@ -62,9 +64,13 @@ bool program::loadLevel(){
 		return false;
 	}
 
+	std::cout << "stream opened" << std::endl;
+
 	std::string line;
 	getline(f, line);
 	currBestScore = stoi(line);
+
+	std::cout << "got score" << std::endl;
 
 
 	if (!myGame.loadGrid(f))
@@ -114,7 +120,7 @@ bool program::saveResults(const long int & newBest) {
 
 //public methods
 
-program::program(): fileNameLevel("./levels/level"), currBestScore(0) {
+program::program(): fileNameLevel("./src/levels/level"), currBestScore(0) {
 }
 
 program::~program() {

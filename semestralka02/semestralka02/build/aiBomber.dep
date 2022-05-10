@@ -1,3 +1,0 @@
-build/aiBomber.o: src/aiBomber.cpp src/aiBomber.hpp src/bomber.hpp \
- src/movingBlock.hpp src/baseBlock.hpp src/powerup.hpp src/bomb.hpp \
- src/grass.hpp

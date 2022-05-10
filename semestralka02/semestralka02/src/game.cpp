@@ -78,6 +78,8 @@ bool game::loadGrid(std::ifstream& f) {
     size_t collumn = 0;
     while (getline(f, line))
     {
+        std::cout << "got line: " << line << std::endl;
+
         std::vector< std::shared_ptr<baseBlock>> newrow;
         newrow.push_back(create('#', 0, row));
         for (collumn = 0; collumn < line.length(); collumn++)
@@ -109,8 +111,8 @@ bool game::loadGrid(std::ifstream& f) {
     }
     board.push_back(anotherrow);
 
-
-};
+    return true;
+}
 
 
 game::game(): numOfActivePlayers(0) {
@@ -140,10 +142,12 @@ bool game::shouldContinue() const {
 int game::gameCleanUp() {
 
     for (auto& object : movingBlocks) {
-        if (object->isPlayer())
+        if (object->isPlayer()) {
             std::cout << "player " << std::dynamic_pointer_cast<bomber>(object)->getName() << " has won!" << std::endl;
             std::cout << "their score is " << std::dynamic_pointer_cast<bomber>(object)->score << std::endl;
             return  std::dynamic_pointer_cast<bomber>(object)->score;
+        }
+
     }
     
     std::cout << "The ghosts havw won!" << std::endl;
@@ -184,4 +188,4 @@ int game::doGame() {
 
     return gameCleanUp();
 
-};
+}
