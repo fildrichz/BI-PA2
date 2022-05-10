@@ -16,13 +16,14 @@ bool program::startScreen() {
 	}
 
 	std::cout << "level loaded" << std::endl;
+	return true;
 }
 
 bool program::showLevels() {
 
 	int i = 1;
 
-	for (i; i < 20; i++)
+	for (; i < 20; i++)
 	{
 		std::string level = "./levels/level";
 		level += std::to_string(i);
@@ -66,7 +67,7 @@ bool program::loadLevel(){
 	currBestScore = stoi(line);
 
 
-	if (!game.loadGrid(f))
+	if (!myGame.loadGrid(f))
 	{
 		if (f.is_open())
 			f.close();
@@ -83,7 +84,7 @@ bool program::loadLevel(){
 
 }
 
-bool program::saveResults(const int & newBest) {
+bool program::saveResults(const long int & newBest) {
 	char target[21] = { 0 };
 	std::sprintf(target, "%020ld", newBest);
 
@@ -104,7 +105,10 @@ bool program::saveResults(const int & newBest) {
 	else
 	{
 		std::cout << "Failed to open" << '\n';
+		return false;
 	}
+
+	return true;
 }
 
 
@@ -123,7 +127,7 @@ bool program::run(){
 		return false;
 	}
 
-	int achievedScore = game.doGame();
+	int achievedScore = myGame.doGame();
 
 	if (achievedScore < 0) {		 //an error has occured in game
 		std::cout << "error has occured while playing game, err: " << achievedScore << std::endl;
@@ -131,13 +135,15 @@ bool program::run(){
 	}
 
 
-	if (currBestScore < achievedScore)
+	if (currBestScore < achievedScore) {
 		std::cout << "saving new best score: " << currBestScore << std::endl;
 
 		if (!saveResults(achievedScore)) {
 			std::cout << "error while saving results" << std::endl;
 			return false;
-			}
+		}
+	}
+	
 
 	return true;
 

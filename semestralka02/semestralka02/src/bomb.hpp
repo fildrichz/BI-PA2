@@ -3,6 +3,8 @@
 #include "baseBlock.hpp"
 #include "bomber.hpp"
 
+class bomber;
+
 class bomb: public baseBlock{
 
 protected:

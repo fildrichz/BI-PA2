@@ -1,0 +1,4 @@
+build/program.o: src/program.cpp src/program.hpp src/game.hpp \
+ src/baseBlock.hpp src/movingBlock.hpp src/powerup.hpp src/bomber.hpp \
+ src/bomb.hpp src/grass.hpp src/sturdyBlock.hpp \
+ src/indestructibleBlock.hpp src/ghost.hpp src/aiBomber.hpp

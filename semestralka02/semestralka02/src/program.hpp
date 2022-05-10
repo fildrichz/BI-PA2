@@ -12,7 +12,7 @@ class program {
 	Manages life of whole program
 	*/
 	std::string fileNameLevel;
-	game game;
+	game myGame;
 	int currBestScore;
 
 
@@ -51,7 +51,7 @@ class program {
 	 * 
 	 * \return False if fails to save for any reason, else True
 	 */
-	bool saveResults(const int& newBest);
+	bool saveResults(const long int& newBest);
 
 public:
 
