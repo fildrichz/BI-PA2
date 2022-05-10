@@ -23,5 +23,5 @@ public:
 
 	void bombProcess(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board);
 
-
+	virtual char display();
 };

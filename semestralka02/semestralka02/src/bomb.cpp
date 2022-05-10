@@ -13,6 +13,7 @@ bool bomb::tick()
 int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
 
+    std::cout << "bomb exploding" << std::endl;
 
     int current_radius = explosionSize;
     size_t saved_row, saved_col;
@@ -50,3 +51,10 @@ bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const in
 	baseBlock(x, y, 'B'), timeLeft(timer), explosionSize(eSize), belongsTo(belongsToe)
 {
 }
+char bomb::display()
+{
+    //char retval = timeLeft;
+    //std::cout << "time left is: " << timeLeft << std::endl;
+    return (char)('0' + timeLeft);
+}
+
