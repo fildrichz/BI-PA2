@@ -24,14 +24,24 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
     for (int where = (-current_radius); where <= current_radius; where++)
     {
+
+        std::cout << "where: " << where << std::endl;
+        std::cout << "row: " << (saved_row + where) << std::endl;
+        std::cout << "col: " << (saved_col + where) << std::endl;
+
+        std::cout << " shouldnt change " << board.size() << " " << board[0].size() << std::endl;
+
+
         if ((saved_row + where) < (board.size())) {
-            board[saved_row + where][saved_col] = board[saved_row + where][saved_col]->ruin();
+            std::cout << "checking row" << std::endl;
+            board[saved_col][saved_row + where] = board[saved_col][saved_row + where]->ruin();
             bonusScore++;
         }
 
 
-        if ((saved_col + where) < (board[1].size())) {
-            board[saved_row + where][saved_col] = board[saved_row][saved_col + where]->ruin();
+        if ((saved_col + where) < (board[0].size())) {
+            std::cout << "checking col" << std::endl;
+            board[saved_col + where][saved_row] = board[saved_col + where][saved_row]->ruin();
             bonusScore++;
         }
 

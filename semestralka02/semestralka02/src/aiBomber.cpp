@@ -71,7 +71,7 @@ std::shared_ptr<baseBlock> aiBomber::move(std::vector<std::vector<std::shared_pt
 {
 
 
-    while (!goInDirection(board, direction))
+    if (!goInDirection(board, direction))
         changeDirection();
         
     if (checkForPlayer(board)) {
