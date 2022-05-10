@@ -73,7 +73,7 @@ void game::load_screen()
         {
             //std::cout << "a";
             std::cout<< single->display();
-            std::cout << single->getX() << single->getY();
+            //std::cout << single->getX() << single->getY();
             row++;
         }
 
@@ -181,7 +181,7 @@ int game::doGame() {
         }
 
         load_screen();
-        std::cout << "after bomb actions" << std::endl;
+        //std::cout << "after bomb actions" << std::endl;
 
 
         std::cout << "moving blocks" << std::endl;

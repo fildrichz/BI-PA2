@@ -20,25 +20,27 @@ void ghost::changeDirection()
 bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
 
+	std::cout << "ghost checking front" << std::endl;
+
 	char realDir = direction[0];
 	std::vector<int> realTarget;
 	realTarget.push_back(this->getX());
 	realTarget.push_back(this->getY());
 
 	switch (realDir) {
-	case 'u':
-		realTarget[1] += 1;
-		break;
-
-	case 'd':
+	case 'u': //up
 		realTarget[1] -= 1;
 		break;
 
-	case 'l':
+	case 'd': //down
+		realTarget[1] += 1;
+		break;
+
+	case 'l': //left
 		realTarget[0] -= 1;
 		break;
 
-	case 'e':
+	case 'r': //right
 		realTarget[0] += 1;
 		break;
 
@@ -50,9 +52,19 @@ bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 		return false;
 
 	
-	if (std::dynamic_pointer_cast<bomber>(board[direction[0]][direction[1]])->isPlayer()) {
-		board[direction[0]][direction[1]] = board[direction[0]][direction[1]]->ruin();
-		return true;
+	else{
+
+		std::cout << "real target is" << realTarget[1] << " " << realTarget[0] << std::endl;
+
+		auto a = std::dynamic_pointer_cast<bomber>(board[realTarget[1]][realTarget[0]]);
+
+		std::cout << "casted" << std::endl;
+
+		if(a)
+			if (a->isPlayer()) {
+				board[realTarget[1]][realTarget[0]] = board[realTarget[1]][realTarget[0]]->ruin();
+				return true;
+			}
 	}
 		
 
@@ -67,7 +79,7 @@ ghost::ghost(const unsigned int x, const unsigned int y): movingBlock(x,y)
 
 std::shared_ptr<baseBlock> ghost::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-	while (!goInDirection(board, direction))
+	if (!goInDirection(board, direction))
 		changeDirection();
 
 	checkFront(board);

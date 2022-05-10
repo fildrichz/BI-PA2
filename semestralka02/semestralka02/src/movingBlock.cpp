@@ -77,7 +77,7 @@ bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBloc
 bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & board, const std::vector<int>& target)
 {
 
-	std::cout << "trying to go to: " << target[0] << target[1] << " which is "<< board[target[0]][target[1]]->display() << std::endl;
+	//std::cout << "trying to go to: " << target[0] << target[1] << " which is "<< board[target[0]][target[1]]->display() << std::endl;
 
 
 	if (!board[target[1]][target[0]]->isPassable()) {
@@ -85,9 +85,9 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 		return false;
 	}
 	else {
-		std::cout << "is passable" << std::endl;
+		//std::cout << "is passable" << std::endl;
 
-		//std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
 
 		/**
 		 * .
@@ -105,19 +105,21 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 
 		//std::cout << "under is: " << under->display() << std::endl;
 
-		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
 		std::swap(board[target[1]][target[0]], under);
 
 		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 		//board[target[0]][target[1]].swap(board[target[this->x]][target[this->y]]);
 		//this->under.swap(board[target[0]][target[1]]->under);
-		std::swap(board[target[1]][target[0]], board[this->x][this->y]);
+		std::swap(board[target[1]][target[0]], board[this->y][this->x]);
 
 		this->x = target[0];
 		this->y = target[1];
 
-		std::cout << "went to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+		std::cout << "went to: " << target[0] << target[1] << " which is " << board[target[1]][target[0]]->display() << std::endl;
+
+		std::cout << "moving coordinates are " << this->getX() << " " << this->getY() << std::endl;
 
 		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
