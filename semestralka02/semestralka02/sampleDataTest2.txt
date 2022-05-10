@@ -1,0 +1,5 @@
+2
+player
+karel
+robot
+down

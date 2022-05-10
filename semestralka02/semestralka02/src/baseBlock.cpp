@@ -22,12 +22,12 @@ unsigned int baseBlock::getY() const
 }
 
 baseBlock::baseBlock(const unsigned int xe, const unsigned int ye):
-	x(xe), y(ye), under(nullptr), passable(false), mask('@'), explosionDebris(false)
+	y(xe), x(ye), under(nullptr), passable(false), mask('@'), explosionDebris(false)
 {
 }
 
 baseBlock::baseBlock(const unsigned int xe, const unsigned int ye, const char& maske): 
-	x(xe), y(ye), under(nullptr), passable(false), mask(maske), explosionDebris(false)
+	y(xe), x(ye), under(nullptr), passable(false), mask(maske), explosionDebris(false)
 {
 }
 

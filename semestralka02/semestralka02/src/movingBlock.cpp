@@ -1,6 +1,6 @@
 
 #include "movingBlock.hpp"
-
+#include "grass.hpp"
 
 void swap_places(std::shared_ptr<baseBlock>& r, std::shared_ptr<baseBlock>&  s)
 {
@@ -11,6 +11,7 @@ void swap_places(std::shared_ptr<baseBlock>& r, std::shared_ptr<baseBlock>&  s)
 
 movingBlock::movingBlock(const unsigned int x, const unsigned int y): baseBlock(x,y), isActive(true)
 {
+	under = std::shared_ptr<grass>(new grass(x, y));
 }
 
 
@@ -28,6 +29,7 @@ bool movingBlock::checkDirectionValidity(const std::vector<std::vector<std::shar
 	if (target[1] >= int(board.size()))
 		return false;
 
+	std::cout << "move is valid" << std::endl;
 	return true;
 
 }
@@ -46,19 +48,19 @@ bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBloc
 	realTarget.push_back(this->getY());
 
 	switch (realDir) {
-		case 'u':
-			realTarget[1] += 1;
-			break;
-
-		case 'd':
+		case 'u': //up
 			realTarget[1] -= 1;
 			break;
 
-		case 'l':
+		case 'd': //down
+			realTarget[1] += 1;
+			break;
+
+		case 'l': //left
 			realTarget[0] -= 1;
 			break;
 
-		case 'e':
+		case 'r': //right
 			realTarget[0] += 1;
 			break;
 
@@ -74,17 +76,39 @@ bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBloc
 
 bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & board, const std::vector<int>& target)
 {
-	if(!board[target[0]][target[1]]->isPassable())
+
+	std::cout << "trying to go to: " << target[0] << target[1] << " which is "<< board[target[0]][target[1]]->display() << std::endl;
+
+
+	if (!board[target[0]][target[1]]->isPassable()) {
+		std::cout << "was not passable" << std::endl;
 		return false;
+	}
 	else {
+		std::cout << "is passable" << std::endl;
+
+		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
 
 		std::swap(this->x, board[target[0]][target[1]]->x);
-		std::swap(this->y, board[target[0]][target[1]]->y);
+		std::cout << "first swap" << std::endl;
 
-		std::swap(board[target[0]][target[1]], board[this->x][this->y]->under);
+		std::swap(this->y, board[target[0]][target[1]]->y);
+		std::cout << "second swap" << std::endl;
+
+		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+
+		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+
+		std::cout << "under is: " << under->display() << std::endl;
+
+		std::swap(board[target[0]][target[1]], under);
+
+		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 		//board[target[0]][target[1]].swap(board[target[this->x]][target[this->y]]);
 		//this->under.swap(board[target[0]][target[1]]->under);
 		std::swap(board[target[0]][target[1]], board[this->x][this->y]);
+
+		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
 	}
 	return true;

@@ -20,12 +20,17 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
                 auto temp = std::shared_ptr<bomber>(new bomber(collumn, row));
                 temp->playerName = pName;
                 movingBlocks.push_back(temp);
+                //temp->under = std::shared_ptr<grass>(new grass(collumn, row));
+
                 return temp;
             }
 
             std::cout << "Created robot" << std::endl;
             auto robot = std::shared_ptr<aiBomber>(new aiBomber(collumn, row));
             movingBlocks.push_back(robot);
+
+            //robot->under = std::shared_ptr<grass>(new grass(collumn, row));
+
 
 
             return robot;
@@ -60,13 +65,15 @@ void game::load_screen()
 
 
 
-    for (std::vector< std::shared_ptr<baseBlock>> entire_row : board)
+    for (std::vector< std::shared_ptr<baseBlock>> &entire_row : board)
     {
+        //std::cout << "row:";
         row = 0;
-        for (std::shared_ptr<baseBlock> single : entire_row)
+        for (std::shared_ptr<baseBlock> &single : entire_row)
         {
             //std::cout << "a";
             std::cout<< single->display();
+            //std::cout << single->getX() << single->getY();
             row++;
         }
 
@@ -185,6 +192,7 @@ int game::doGame() {
 
                 if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
                 {
+                    std::cout << "adding bomb" << std::endl;
                     bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
                 }
 
