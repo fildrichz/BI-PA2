@@ -73,7 +73,7 @@ void game::load_screen()
         {
             //std::cout << "a";
             std::cout<< single->display();
-            //std::cout << single->getX() << single->getY();
+            std::cout << single->getX() << single->getY();
             row++;
         }
 

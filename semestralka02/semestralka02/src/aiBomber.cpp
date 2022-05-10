@@ -24,6 +24,8 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
     saved_row = this->getX();
     saved_col = this->getY();
 
+    std::cout << "checking for player" << std::endl;
+
     for (int where = (-current_radius); where <= current_radius; where++)
     {
         if ((saved_row + where) < (board.size())) 
@@ -32,7 +34,7 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
         
 
 
-        if ((saved_col + where) < (board[1].size())) 
+        if ((saved_col + where) < (board[0].size())) 
             if (std::dynamic_pointer_cast<bomber>(board[saved_row][saved_col + where])->isPlayer())
                 return true;
         

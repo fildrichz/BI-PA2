@@ -80,35 +80,46 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 	std::cout << "trying to go to: " << target[0] << target[1] << " which is "<< board[target[0]][target[1]]->display() << std::endl;
 
 
-	if (!board[target[0]][target[1]]->isPassable()) {
+	if (!board[target[1]][target[0]]->isPassable()) {
 		std::cout << "was not passable" << std::endl;
 		return false;
 	}
 	else {
 		std::cout << "is passable" << std::endl;
 
-		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+		//std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
 
-		std::swap(this->x, board[target[0]][target[1]]->x);
+		/**
+		 * .
+				std::swap(this->x, board[target[0]][target[1]]->x);
 		std::cout << "first swap" << std::endl;
 
 		std::swap(this->y, board[target[0]][target[1]]->y);
 		std::cout << "second swap" << std::endl;
+		 */
+
+
+		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+
+		//std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+
+		//std::cout << "under is: " << under->display() << std::endl;
 
 		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
-		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+		std::swap(board[target[1]][target[0]], under);
 
-		std::cout << "under is: " << under->display() << std::endl;
-
-		std::swap(board[target[0]][target[1]], under);
-
-		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 		//board[target[0]][target[1]].swap(board[target[this->x]][target[this->y]]);
 		//this->under.swap(board[target[0]][target[1]]->under);
-		std::swap(board[target[0]][target[1]], board[this->x][this->y]);
+		std::swap(board[target[1]][target[0]], board[this->x][this->y]);
 
-		std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+		this->x = target[0];
+		this->y = target[1];
+
+		std::cout << "went to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
+
+		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
 	}
 	return true;
