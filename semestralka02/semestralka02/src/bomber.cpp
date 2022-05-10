@@ -1,5 +1,19 @@
 #include "bomber.hpp"
 
+
+bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), expSize(3), bombTimer(3), score(0)
+{
+	/*
+	* 	std::cout << "enter bomber name: ";
+	std::cin >> playerName;
+	*/
+	
+	//todo;
+
+	mask = 'P';
+}
+
+
 std::string bomber::getName() const
 {
 	return playerName;
@@ -38,7 +52,6 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 			return this->under;
 		}
 			
-
-
 	return nullptr;
 }
+

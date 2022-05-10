@@ -3,46 +3,45 @@
 
 std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, const int& row)
 {
-    switch (entry) //character from file
-    {
-        /**
-         * .
-    case 'a':
-        return new grass(collumn, row);
-
-    case 'p':
-        return new powerup(collumn, row);
-
-    case 'i':
-        return new solid_wall(collumn, row);
-
-    case 'd':
-        return new weak_wall(collumn, row);
-
-    case 'b':
-        return new bomberman(collumn, row);
-
-    case 's':
-        return new semi_destructible_block(collumn, row);
-         * 
-         * \param entry
-         * \param collumn
-         * \param row
-         * \return 
-         */
-
-    case 'X':
-        return std::make_shared<baseBlock>(sturdyBlock(collumn, row));
-
-    case ' ':
-        return std::make_shared<baseBlock>(grass(collumn, row));
-
-    case '#':
-        return std::make_shared<baseBlock>(indestructibleBlock(collumn, row));
 
 
-    default:
-        return std::make_shared<baseBlock>(baseBlock(collumn, row));
+    switch (entry){
+        case 'B': {
+
+            std::string choice;
+
+            std::cout << "Player or robot? ";
+            std::cin >> choice;
+
+            if (choice == "player") {
+                std::string pName;
+                std::cout << "Choose player name: ";
+                std::cin >> pName;
+                auto temp = std::make_shared<bomber>(bomber(collumn, row));
+                temp->playerName = pName;
+                return temp;
+            }
+
+            std::cout << "Created robot" << std::endl;
+            return std::make_shared<aiBomber>(aiBomber(collumn, row));
+            }
+
+
+        case 'G':
+            return std::make_shared<ghost>(ghost(collumn, row));
+
+        case 'X':
+            return std::make_shared<baseBlock>(sturdyBlock(collumn, row));
+
+        case ' ':
+            return std::make_shared<baseBlock>(grass(collumn, row));
+
+        case '#':
+            return std::make_shared<baseBlock>(indestructibleBlock(collumn, row));
+
+
+        default:
+            return std::make_shared<baseBlock>(baseBlock(collumn, row));
     }
 }
 
@@ -168,14 +167,17 @@ int game::doGame() {
         std::cout << "moving blocks" << std::endl;
 
         for (auto & movingblock : movingBlocks) {
-            auto a = movingblock->move(board);
+            if (movingblock->active()) {
+                auto a = movingblock->move(board);
 
-            if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
-            {
-                bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
+                if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
+                {
+                    bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
+                }
+
+                load_screen();
             }
-            
-            load_screen();
+
         }
 
     }

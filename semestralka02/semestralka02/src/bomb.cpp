@@ -30,7 +30,7 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
 
         if ((saved_col + where) < (board[1].size())) {
-            board[saved_row + where][saved_col] = board[saved_row + where][saved_col]->ruin();
+            board[saved_row + where][saved_col] = board[saved_row][saved_col + where]->ruin();
             bonusScore++;
         }
 

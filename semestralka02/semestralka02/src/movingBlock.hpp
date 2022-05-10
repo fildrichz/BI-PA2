@@ -19,6 +19,7 @@ public:
 
 	movingBlock(const unsigned int x, const unsigned int y);
 
+	bool active() const;
 
 
 

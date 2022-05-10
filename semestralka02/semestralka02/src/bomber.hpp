@@ -6,11 +6,8 @@
 
 class bomber: public movingBlock{
 
-
-protected:
-	std::string playerName;
-
 public:
+	std::string playerName;
 
 	int expSize;
 	int bombTimer;

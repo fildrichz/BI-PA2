@@ -11,6 +11,8 @@
 #include "grass.hpp"
 #include "sturdyBlock.hpp"
 #include "indestructibleBlock.hpp"
+#include "ghost.hpp"
+#include "aiBomber.hpp"
 
 class game {
 

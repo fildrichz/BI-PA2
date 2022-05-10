@@ -32,6 +32,11 @@ bool movingBlock::checkDirectionValidity(const std::vector<std::vector<std::shar
 
 }
 
+bool movingBlock::active() const
+{
+	return isActive;
+}
+
 bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board, const std::string& where)
 {
 
