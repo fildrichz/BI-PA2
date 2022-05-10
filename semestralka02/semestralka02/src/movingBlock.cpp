@@ -22,10 +22,10 @@ bool movingBlock::checkDirectionValidity(const std::vector<std::vector<std::shar
 	if (target[1] < 0)
 		return false;
 
-	if (target[0] >= board[0].size())
+	if (target[0] >= int(board[0].size()))
 		return false;
 
-	if (target[1] >= board.size())
+	if (target[1] >= int(board.size()))
 		return false;
 
 	return true;

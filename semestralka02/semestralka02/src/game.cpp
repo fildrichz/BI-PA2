@@ -17,31 +17,39 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
                 std::string pName;
                 std::cout << "Choose player name: ";
                 std::cin >> pName;
-                auto temp = std::make_shared<bomber>(bomber(collumn, row));
+                auto temp = std::shared_ptr<bomber>(new bomber(collumn, row));
                 temp->playerName = pName;
+                movingBlocks.push_back(temp);
                 return temp;
             }
 
             std::cout << "Created robot" << std::endl;
-            return std::make_shared<aiBomber>(aiBomber(collumn, row));
+            auto robot = std::shared_ptr<aiBomber>(new aiBomber(collumn, row));
+            movingBlocks.push_back(robot);
+
+
+            return robot;
             }
 
 
-        case 'G':
-            return std::make_shared<ghost>(ghost(collumn, row));
+        case 'G':{
+            auto newG = std::shared_ptr<ghost>(new ghost(collumn, row));
+            movingBlocks.push_back(newG);
+            return newG;
+        }
 
         case 'X':
-            return std::make_shared<baseBlock>(sturdyBlock(collumn, row));
+            return std::shared_ptr<sturdyBlock>( new sturdyBlock(collumn, row));
 
         case ' ':
-            return std::make_shared<baseBlock>(grass(collumn, row));
+            return std::shared_ptr<grass>(new grass(collumn, row));
 
         case '#':
-            return std::make_shared<baseBlock>(indestructibleBlock(collumn, row));
+            return std::shared_ptr<indestructibleBlock>(new indestructibleBlock(collumn, row));
 
 
         default:
-            return std::make_shared<baseBlock>(baseBlock(collumn, row));
+            return std::shared_ptr<baseBlock>(new baseBlock(collumn, row));
     }
 }
 
@@ -57,7 +65,8 @@ void game::load_screen()
         row = 0;
         for (std::shared_ptr<baseBlock> single : entire_row)
         {
-            single->display();
+            //std::cout << "a";
+            std::cout<< single->display();
             row++;
         }
 
