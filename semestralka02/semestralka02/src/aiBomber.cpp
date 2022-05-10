@@ -46,6 +46,7 @@ aiBomber::aiBomber(const unsigned int x, const unsigned int y): bomber(x,y)
 {
     mask = 'R';
     bombTimer = 4;
+    playerName = "aiBomber";
 }
 
 std::shared_ptr<baseBlock> aiBomber::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)

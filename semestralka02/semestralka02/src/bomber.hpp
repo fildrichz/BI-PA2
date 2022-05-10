@@ -3,6 +3,8 @@
 #include "movingBlock.hpp"
 #include <string>
 #include "bomb.hpp"
+#include "powerup.hpp"
+#include "grass.hpp"
 
 class bomber: public movingBlock{
 

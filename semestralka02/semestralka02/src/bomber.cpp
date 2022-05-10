@@ -51,6 +51,12 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 			placeBomb(board);
 			return this->under;
 		}
+
+
+	std::shared_ptr<powerup> tempUnder = std::dynamic_pointer_cast<powerup>(under);
+	if (tempUnder)
+		tempUnder->effect(std::make_shared<bomber>(this));
+		under = std::make_shared<baseBlock>(grass(getX(), getY()));
 			
 	return nullptr;
 }
