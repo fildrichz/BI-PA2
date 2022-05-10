@@ -41,7 +41,7 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
 void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-	if (tick)
+	if (tick())
 		belongsTo->score += explode(board);
 
 }

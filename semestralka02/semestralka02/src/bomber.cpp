@@ -22,7 +22,7 @@ std::string bomber::getName() const
 bool bomber::placeBomb(std::vector<std::vector<std::shared_ptr<baseBlock>>> board)
 {
 
-	std::shared_ptr<bomb> newBomb = std::make_shared<bomb>(bomb(this->getX(), this->getY(), expSize, bombTimer, std::make_shared<bomber>(this)));
+	std::shared_ptr<bomb> newBomb = std::shared_ptr<bomb>(new bomb(this->getX(), this->getY(), expSize, bombTimer, std::shared_ptr<bomber>(this)));
 
 
 	std::shared_ptr<baseBlock> temp = this->under;
@@ -54,9 +54,11 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 
 
 	std::shared_ptr<powerup> tempUnder = std::dynamic_pointer_cast<powerup>(under);
-	if (tempUnder)
-		tempUnder->effect(std::make_shared<bomber>(this));
-		under = std::make_shared<baseBlock>(grass(getX(), getY()));
+	if (tempUnder) {
+		tempUnder->effect(std::shared_ptr<bomber>(this));
+		under = std::shared_ptr<baseBlock>(new grass(getX(), getY()));
+	}
+
 			
 	return nullptr;
 }

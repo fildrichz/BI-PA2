@@ -1,4 +1,5 @@
 #include "ghost.hpp"
+#include "bomber.hpp"
 
 void ghost::changeDirection()
 {
@@ -49,9 +50,13 @@ bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 		return false;
 
 	
-	if (std::dynamic_pointer_cast<bomber>(board[direction[0]][direction[1]])->isPlayer())
+	if (std::dynamic_pointer_cast<bomber>(board[direction[0]][direction[1]])->isPlayer()) {
 		board[direction[0]][direction[1]] = board[direction[0]][direction[1]]->ruin();
+		return true;
+	}
+		
 
+	return false;
 	
 }
 
@@ -64,6 +69,8 @@ std::shared_ptr<baseBlock> ghost::move(std::vector<std::vector<std::shared_ptr<b
 {
 	while (!goInDirection(board, direction))
 		changeDirection();
+
+	checkFront(board);
 
 	return nullptr;
 }

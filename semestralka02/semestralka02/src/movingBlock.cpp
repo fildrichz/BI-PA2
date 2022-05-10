@@ -109,7 +109,7 @@ std::shared_ptr<baseBlock> movingBlock::ruin()
 	if (under != nullptr)
 		return under;
 
-	return std::make_shared<baseBlock>(this);
+	return std::shared_ptr<baseBlock>(this);
 }
 
 void movingBlock::walkedOn(std::shared_ptr<baseBlock>& thing)

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "baseBlock.hpp"
-#include "bomber.hpp"
+
+class bomber;
 
 class powerup : public baseBlock {
 

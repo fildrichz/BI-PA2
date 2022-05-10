@@ -33,7 +33,7 @@ public:
 
 	virtual std::shared_ptr<baseBlock> ruin();
 
-	virtual char display() const;
+	virtual char display();
 
 
 

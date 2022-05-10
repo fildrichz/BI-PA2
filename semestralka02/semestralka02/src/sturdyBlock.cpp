@@ -10,8 +10,8 @@ std::shared_ptr<baseBlock> sturdyBlock::ruin()
 	lives -= 1;
 	if (lives > 0) {
 		mask = 'x';
-		return std::make_shared<baseBlock>(this);
+		return std::shared_ptr<baseBlock>(this);
 	}
 
-	return std::make_shared<baseBlock>(grass(this->getX(), this->getY()));
+	return std::shared_ptr<baseBlock>(new grass(this->getX(), this->getY()));
 }

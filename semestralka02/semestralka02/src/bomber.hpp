@@ -1,7 +1,8 @@
 #pragma once
 
-#include "movingBlock.hpp"
 #include <string>
+
+#include "movingBlock.hpp"
 #include "bomb.hpp"
 #include "powerup.hpp"
 #include "grass.hpp"
@@ -22,8 +23,8 @@ public:
 
 	virtual bool placeBomb(std::vector< std::vector< std::shared_ptr<baseBlock>>> board);
 
-	virtual bool isPlayer() const override;
+	virtual bool isPlayer() const; //override;
 
-	virtual std::shared_ptr< baseBlock> move(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board) override;
+	virtual std::shared_ptr< baseBlock> move(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board); //override;
 
 };

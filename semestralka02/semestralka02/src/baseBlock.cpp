@@ -36,12 +36,12 @@ std::shared_ptr<baseBlock> baseBlock::ruin()
 	if (under != nullptr)
 		return under;
 
-	return std::make_shared<baseBlock>(this);
+	return std::shared_ptr<baseBlock>(this);
 }
 
-char baseBlock::display() const
+char baseBlock::display() 
 {
-	if (debrisCheck)
+	if (debrisCheck())
 		return '+';
 
 	return mask;

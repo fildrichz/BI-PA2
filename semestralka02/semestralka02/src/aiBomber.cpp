@@ -38,6 +38,8 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
         
     }
 
+    return false;
+
 }
 
 
@@ -56,9 +58,11 @@ std::shared_ptr<baseBlock> aiBomber::move(std::vector<std::vector<std::shared_pt
     while (!goInDirection(board, direction))
         changeDirection();
         
-    if(checkForPlayer(board))
+    if (checkForPlayer(board)) {
         placeBomb(board);
         return this->under;
+    }
+
 
 	return nullptr;
 }

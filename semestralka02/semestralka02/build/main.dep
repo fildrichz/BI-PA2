@@ -1,4 +1,4 @@
 build/main.o: src/main.cpp src/program.hpp src/game.hpp src/baseBlock.hpp \
- src/movingBlock.hpp src/powerup.hpp src/bomber.hpp src/bomb.hpp \
+ src/movingBlock.hpp src/powerup.hpp src/bomb.hpp src/bomber.hpp \
  src/grass.hpp src/sturdyBlock.hpp src/indestructibleBlock.hpp \
  src/ghost.hpp src/aiBomber.hpp
