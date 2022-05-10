@@ -168,7 +168,13 @@ int game::doGame() {
         std::cout << "moving blocks" << std::endl;
 
         for (auto & movingblock : movingBlocks) {
-            movingblock->move();
+            auto a = movingblock->move(board);
+
+            if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
+            {
+                bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
+            }
+            
             load_screen();
         }
 

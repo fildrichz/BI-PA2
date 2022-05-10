@@ -19,16 +19,24 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
     saved_row = this->getX();
     saved_col = this->getY();
 
+    int bonusScore = 1;
+
     for (int where = (-current_radius); where <= current_radius; where++)
     {
-        if ((saved_row + where) < (board.size()))
+        if ((saved_row + where) < (board.size())) {
             board[saved_row + where][saved_col] = board[saved_row + where][saved_col]->ruin();
+            bonusScore++;
+        }
 
-        if ((saved_col + where) < (board[1].size()))
+
+        if ((saved_col + where) < (board[1].size())) {
             board[saved_row + where][saved_col] = board[saved_row + where][saved_col]->ruin();
+            bonusScore++;
+        }
+
     }
 
-	return 0;
+	return bonusScore;
 }
 
 void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
@@ -38,7 +46,7 @@ void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 
 }
 
-bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber>& belongsToe):
+bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber> belongsToe):
 	baseBlock(x, y, 'B'), timeLeft(timer), explosionSize(eSize), belongsTo(belongsToe)
 {
 }

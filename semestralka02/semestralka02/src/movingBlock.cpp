@@ -9,7 +9,7 @@ void swap_places(std::shared_ptr<baseBlock>& r, std::shared_ptr<baseBlock>&  s)
 	swap(r, s);
 }
 
-movingBlock::movingBlock(const unsigned int x, const unsigned int y): baseBlock(x,y)
+movingBlock::movingBlock(const unsigned int x, const unsigned int y): baseBlock(x,y), isActive(true)
 {
 }
 
@@ -94,6 +94,17 @@ bool movingBlock::isGhost() const
 bool movingBlock::isPlayer() const
 {
 	return false;
+}
+
+
+std::shared_ptr<baseBlock> movingBlock::ruin()
+{
+	isActive = false;
+
+	if (under != nullptr)
+		return under;
+
+	return std::make_shared<baseBlock>(this);
 }
 
 void movingBlock::walkedOn(std::shared_ptr<baseBlock>& thing)

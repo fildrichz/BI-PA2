@@ -7,6 +7,8 @@
 class movingBlock: public baseBlock {
 
 protected:
+	bool isActive;
+
 	bool go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & board, const std::vector<int>& direction);
 
 	bool goInDirection(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board, const std::string & where);
@@ -24,6 +26,10 @@ public:
 
 	virtual bool isGhost() const;
 	virtual bool isPlayer() const;
+
+	virtual std::shared_ptr<baseBlock> ruin() override
+	{
+	}
 
 
 	virtual void walkedOn(std::shared_ptr< baseBlock>& thing);

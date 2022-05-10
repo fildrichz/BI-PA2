@@ -17,7 +17,7 @@ protected:
 
 public:
 
-	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber>& belongsTo);
+	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber> belongsTo);
 
 	void bombProcess(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board);
 
