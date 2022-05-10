@@ -28,9 +28,7 @@ public:
 	virtual bool isGhost() const;
 	virtual bool isPlayer() const;
 
-	virtual std::shared_ptr<baseBlock> ruin() override
-	{
-	}
+	virtual std::shared_ptr<baseBlock> ruin() override;
 
 
 	virtual void walkedOn(std::shared_ptr< baseBlock>& thing);

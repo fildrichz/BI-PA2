@@ -140,20 +140,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="semestralka02.cpp" />
+    <ClCompile Include="src\aiBomber.cpp" />
     <ClCompile Include="src\baseBlock.cpp" />
+    <ClCompile Include="src\ghost.cpp" />
+    <ClCompile Include="src\indestructibleBlock.cpp" />
+    <ClCompile Include="src\robot.cpp" />
+    <ClCompile Include="src\sturdyBlock.cpp" />
     <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\movingBlock.cpp" />
     <ClCompile Include="src\bomb.cpp" />
     <ClCompile Include="src\bomber.cpp" />
     <ClCompile Include="src\powerup.cpp" />
+    <ClCompile Include="src\grass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\aiBomber.hpp" />
+    <ClInclude Include="src\ghost.hpp" />
+    <ClInclude Include="src\indestructibleBlock.hpp" />
+    <ClInclude Include="src\robot.hpp" />
+    <ClInclude Include="src\sturdyBlock.hpp" />
     <ClInclude Include="src\game.hpp" />
     <ClInclude Include="src\baseBlock.hpp" />
     <ClInclude Include="src\bomb.hpp" />
     <ClInclude Include="src\bomber.hpp" />
-    <ClInclude Include="src\powerup.hp" />
+    <ClInclude Include="src\grass.hpp" />
+    <ClInclude Include="src\powerup.hpp" />
     <ClInclude Include="src\movingBlock.hpp" />
     <ClInclude Include="src\program.hpp" />
   </ItemGroup>
