@@ -15,6 +15,9 @@ protected:
 
 	bool checkDirectionValidity(const std::vector< std::vector< std::shared_ptr<baseBlock>>>& board, const std::vector<int>& target) const;
 
+
+	std::vector<int> getRealTarget(const std::string& where) const;
+
 public:
 
 	movingBlock(const unsigned int x, const unsigned int y);

@@ -4,7 +4,7 @@ bool bomb::tick()
 {
 
 	timeLeft -= 1;
-	if (timeLeft == 0)
+    if (timeLeft == 0)
 		return true;
 
 	return false;
@@ -71,7 +71,13 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
 void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-	if (tick())
+    /*
+        if (board[y][x]==shared_from_this())
+        if(tick())
+		    belongsTo->score += explode(board);
+    */
+
+    if (tick())
 		belongsTo->score += explode(board);
 
 }
