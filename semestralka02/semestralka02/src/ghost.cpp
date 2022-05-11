@@ -96,3 +96,13 @@ bool ghost::isGhost() const
 {
 	return isActive;
 }
+
+std::shared_ptr<baseBlock> ghost::ruin()
+{
+	isActive = false;
+
+	if (under != nullptr)
+		return under->ruin();
+
+	return std::make_shared<grass>(x, y);
+}

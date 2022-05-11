@@ -85,3 +85,11 @@ char bomb::display()
     return (char)('0' + timeLeft);
 }
 
+std::shared_ptr<baseBlock> bomb::ruin()
+{
+
+    if (under != nullptr)
+        return under->ruin();
+
+    return std::make_shared<grass>(x, y);
+}

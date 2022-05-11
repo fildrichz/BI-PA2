@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-class baseBlock: public std::enable_shared_from_this<baseBlock> {
+class baseBlock {
 
 	bool explosionDebris;
 
@@ -30,7 +30,7 @@ public:
 	bool isPassable() const;
 
 
-	virtual std::shared_ptr<baseBlock> ruin();
+	virtual std::shared_ptr<baseBlock> ruin() = 0;
 
 	virtual char display();
 

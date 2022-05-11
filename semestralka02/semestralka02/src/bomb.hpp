@@ -5,7 +5,7 @@
 
 class bomber;
 
-class bomb: public baseBlock{
+class bomb: public baseBlock, public std::enable_shared_from_this<bomb> {
 
 protected:
 	int timeLeft;
@@ -24,4 +24,6 @@ public:
 	void bombProcess(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board);
 
 	virtual char display();
+
+	std::shared_ptr<baseBlock> ruin();
 };

@@ -54,7 +54,7 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
 
 
         default:
-            return std::shared_ptr<baseBlock>(new baseBlock(collumn, row));
+            return std::shared_ptr<grass>(new grass(collumn, row));
     }
 }
 
@@ -186,13 +186,13 @@ int game::doGame() {
 
         std::cout << "moving blocks" << std::endl;
 
-        static int counter = 0;
+        //static int counter = 0;
 
         for (auto & movingblock : movingBlocks) {
             if (movingblock->active()) {
 
-                if (counter++ == 2)
-                    throw 15;
+                //if (counter++ == 2)
+                    //throw 15;
 
                 auto a = movingblock->move(board);
 

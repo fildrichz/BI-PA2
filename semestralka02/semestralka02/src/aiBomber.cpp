@@ -88,6 +88,7 @@ std::shared_ptr<baseBlock> aiBomber::move(std::vector<std::vector<std::shared_pt
         changeDirection();
         
     if (checkForPlayer(board)) {
+        std::cout << "placing bomb" << std::endl;
         placeBomb(board);
         return this->under;
     }

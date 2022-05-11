@@ -27,6 +27,7 @@ baseBlock::baseBlock(const unsigned int xe, const unsigned int ye, const char& m
 {
 }
 
+/**
 std::shared_ptr<baseBlock> baseBlock::ruin()
 {
 	std::cout << "ruining" << std::endl;
@@ -36,6 +37,8 @@ std::shared_ptr<baseBlock> baseBlock::ruin()
 
 	return shared_from_this();
 }
+ */
+
 
 char baseBlock::display() 
 {

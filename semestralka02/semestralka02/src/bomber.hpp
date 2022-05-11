@@ -7,7 +7,7 @@
 #include "powerup.hpp"
 #include "grass.hpp"
 
-class bomber: public movingBlock{
+class bomber: public std::enable_shared_from_this<bomber>, public movingBlock  {
 
 public:
 	std::string playerName;
@@ -26,5 +26,7 @@ public:
 	virtual bool isPlayer() const; //override;
 
 	virtual std::shared_ptr< baseBlock> move(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board); //override;
+
+	std::shared_ptr<baseBlock> ruin();
 
 };

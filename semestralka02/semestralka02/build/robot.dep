@@ -1,3 +1,0 @@
-build/robot.o: src/robot.cpp src/robot.hpp src/bomber.hpp \
- src/movingBlock.hpp src/baseBlock.hpp src/powerup.hpp src/bomb.hpp \
- src/grass.hpp

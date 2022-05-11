@@ -138,23 +138,6 @@ bool movingBlock::isPlayer() const
 	return false;
 }
 
-
-std::shared_ptr<baseBlock> movingBlock::ruin()
-{
-	isActive = false;
-
-	if (under != nullptr)
-		return under->ruin();
-
-
-	//throw(std::logic_error("moving block with nothing underneath"));
-	//return std::shared_ptr<grass>(new grass(x, y));
-	return std::make_shared<grass>(x, y);
-		
-
-	//pripadne vracet bool hodnotu znicitelnosti, pak ruinovat
-}
-
 void movingBlock::walkedOn(std::shared_ptr<baseBlock>& thing)
 {
 }
