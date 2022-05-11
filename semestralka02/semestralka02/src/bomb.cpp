@@ -31,13 +31,15 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
         std::cout << " shouldnt change "   << board[0].size() << " " << board.size() << std::endl;
 
-
-        if ((saved_row + where) < (board[0].size())) {
-            std::cout << "checking row " << (saved_row + where) << " " << saved_col << board[saved_col][saved_row + where]->display() << std::endl;
-            board[saved_col][saved_row + where] = board[saved_col][saved_row + where]->ruin();
-            std::cout << "after ruination is " << board[saved_col][saved_row + where]->display() << std::endl;
-            bonusScore++;
+        if (where != 0) {
+            if ((saved_row + where) < (board[0].size())) {
+                std::cout << "checking row " << (saved_row + where) << " " << saved_col << board[saved_col][saved_row + where]->display() << std::endl;
+                board[saved_col][saved_row + where] = board[saved_col][saved_row + where]->ruin();
+                std::cout << "after ruination is " << board[saved_col][saved_row + where]->display() << std::endl;
+                bonusScore++;
+            }
         }
+
 
         if(where!=0)
             if ((saved_col + where) < (board.size())) {
@@ -59,7 +61,7 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
     }
 
-    board[saved_col][saved_row] = std::make_shared<grass>(x, y);
+    board[saved_col][saved_row] = board[saved_col][saved_row]->ruin();
     
     
 
@@ -77,6 +79,7 @@ void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber> belongsToe):
 	baseBlock(x, y, 'B'), timeLeft(timer), explosionSize(eSize), belongsTo(belongsToe)
 {
+    passable = false;
 }
 char bomb::display()
 {

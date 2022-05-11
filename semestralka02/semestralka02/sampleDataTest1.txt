@@ -1,0 +1,11 @@
+1
+player
+Karel
+bomb
+right
+down
+stay
+stay
+stay
+stay
+stay

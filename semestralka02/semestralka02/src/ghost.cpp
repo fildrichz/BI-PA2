@@ -79,10 +79,11 @@ ghost::ghost(const unsigned int x, const unsigned int y): movingBlock(x,y)
 
 std::shared_ptr<baseBlock> ghost::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-	if (!goInDirection(board, direction))
-		changeDirection();
 
 	checkFront(board);
+
+	if (!goInDirection(board, direction))
+		changeDirection();
 
 	return nullptr;
 }

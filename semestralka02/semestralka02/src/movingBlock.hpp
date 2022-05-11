@@ -32,4 +32,6 @@ public:
 	virtual void walkedOn(std::shared_ptr< baseBlock>& thing);
 
 
+
+
 };
