@@ -17,44 +17,45 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
                 std::string pName;
                 std::cout << "Choose player name: ";
                 std::cin >> pName;
-                auto temp = std::shared_ptr<bomber>(new bomber(collumn, row));
+                auto temp = std::make_shared<bomber>(collumn, row);
                 temp->playerName = pName;
                 movingBlocks.push_back(temp);
                 //temp->under = std::shared_ptr<grass>(new grass(collumn, row));
 
                 return temp;
             }
+            else {
+                std::cout << "Created robot" << std::endl;
+                auto robot = std::make_shared<aiBomber>(collumn, row);
+                movingBlocks.push_back(robot);
 
-            std::cout << "Created robot" << std::endl;
-            auto robot = std::shared_ptr<aiBomber>(new aiBomber(collumn, row));
-            movingBlocks.push_back(robot);
-
-            //robot->under = std::shared_ptr<grass>(new grass(collumn, row));
+                //robot->under = std::shared_ptr<grass>(new grass(collumn, row));
+                return robot;
+            }
 
 
 
-            return robot;
             }
 
 
         case 'G':{
-            auto newG = std::shared_ptr<ghost>(new ghost(collumn, row));
+            auto newG = std::make_shared<ghost>(collumn, row);
             movingBlocks.push_back(newG);
             return newG;
         }
 
         case 'X':
-            return std::shared_ptr<sturdyBlock>( new sturdyBlock(collumn, row));
+            return std::make_shared<sturdyBlock>(collumn, row);
 
         case ' ':
-            return std::shared_ptr<grass>(new grass(collumn, row));
+            return std::make_shared<grass>(collumn, row);
 
         case '#':
-            return std::shared_ptr<indestructibleBlock>(new indestructibleBlock(collumn, row));
+            return std::make_shared<indestructibleBlock>(collumn, row);
 
 
         default:
-            return std::shared_ptr<grass>(new grass(collumn, row));
+            return std::make_shared<grass>(collumn, row);
     }
 }
 
