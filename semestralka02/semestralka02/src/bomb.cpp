@@ -51,15 +51,15 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
     }
 
     std::cout << "printing board" << std::endl;
-    for (int x = 0; x < board.size(); x++) {
-        for (int y = 0; y < board[0].size(); y++) {
+    for (unsigned int x = 0; x < board.size(); x++) {
+        for (unsigned int y = 0; y < board[x].size(); y++) {
             std::cout << board[x][y]->display();
         }
         std::cout << std::endl;
 
     }
 
-    board[saved_col][saved_row] = std::shared_ptr<grass>(new grass(x, y));
+    board[saved_col][saved_row] = std::make_shared<grass>(x, y);
     
     
 

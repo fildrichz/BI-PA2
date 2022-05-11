@@ -186,14 +186,23 @@ int game::doGame() {
 
         std::cout << "moving blocks" << std::endl;
 
+        static int counter = 0;
+
         for (auto & movingblock : movingBlocks) {
             if (movingblock->active()) {
+
+                if (counter++ == 2)
+                    throw 15;
+
                 auto a = movingblock->move(board);
+
+
 
                 if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
                 {
                     std::cout << "adding bomb" << std::endl;
                     bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
+
                 }
 
                 load_screen();

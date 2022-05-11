@@ -53,5 +53,10 @@ public:
 	 */
 	bool loadGrid(std::ifstream& f);
 
+	~game() {
+		board.clear();
+		movingBlocks.clear();
+		bombs.clear();
+	}
 
 };

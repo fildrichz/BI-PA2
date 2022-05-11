@@ -1,0 +1,2 @@
+build/sturdyBlock.o: src/sturdyBlock.cpp src/sturdyBlock.hpp \
+ src/baseBlock.hpp src/grass.hpp

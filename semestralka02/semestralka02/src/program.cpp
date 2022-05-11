@@ -51,7 +51,9 @@ bool program::loadLevel(){
 
 	std::cout << "Index of level you would like to play? ";
 
-	std::cin >> userLvl;
+	if (!(std::cin >> userLvl))
+		return false;
+	
 	
 	fileNameLevel += std::to_string(userLvl);
 

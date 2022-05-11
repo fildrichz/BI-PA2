@@ -7,11 +7,16 @@
 
 int main()
 {
-    program prog = program();
-    if (prog.run())
-        std::cout << "ran sucessfully" << std::endl;
-    else
-        std::cout << "error occured while running" << std::endl;
+    program prog;
+
+    try {
+        if (prog.run())
+            std::cout << "ran sucessfully" << std::endl;
+        else
+            std::cout << "error occured while running" << std::endl;
+    }
+    catch (int) {}
+
 
     std::cout << "ending now" << std::endl;
 }

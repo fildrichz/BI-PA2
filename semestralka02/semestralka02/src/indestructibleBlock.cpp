@@ -6,6 +6,6 @@ indestructibleBlock::indestructibleBlock(const unsigned int x, const unsigned in
 
 std::shared_ptr<baseBlock> indestructibleBlock::ruin()
 {
-	return std::shared_ptr<baseBlock>(this);
+	return shared_from_this();
 }
 

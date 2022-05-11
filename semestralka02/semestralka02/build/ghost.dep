@@ -1,0 +1,3 @@
+build/ghost.o: src/ghost.cpp src/ghost.hpp src/movingBlock.hpp \
+ src/baseBlock.hpp src/powerup.hpp src/bomber.hpp src/bomb.hpp \
+ src/grass.hpp

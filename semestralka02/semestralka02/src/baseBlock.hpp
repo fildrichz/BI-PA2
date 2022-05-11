@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-class baseBlock: std::enable_shared_from_this<baseBlock> {
+class baseBlock: public std::enable_shared_from_this<baseBlock> {
 
 	bool explosionDebris;
 
@@ -25,8 +25,7 @@ public:
 	unsigned int getX() const;
 	unsigned int getY() const;
 
-	baseBlock(const unsigned int x, const unsigned int y);
-	baseBlock(const unsigned int x, const unsigned int y, const char & mask);
+	baseBlock(const unsigned int x, const unsigned int y, const char & mask = '@');
 
 	bool isPassable() const;
 
@@ -34,6 +33,8 @@ public:
 	virtual std::shared_ptr<baseBlock> ruin();
 
 	virtual char display();
+
+	virtual ~baseBlock() = default;
 
 
 

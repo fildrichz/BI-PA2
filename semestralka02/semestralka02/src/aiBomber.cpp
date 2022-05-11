@@ -26,8 +26,8 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
 
 
     std::cout << "printing board" << std::endl;
-    for (int x = 0; x < board.size(); x++) {
-        for (int y = 0; y < board[0].size(); y++) {
+    for (unsigned int x = 0; x < board.size(); x++) {
+        for (unsigned int y = 0; y < board[x].size(); y++) {
             std::cout << board[x][y]->display();
         }
         std::cout << std::endl;

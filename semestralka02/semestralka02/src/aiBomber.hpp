@@ -2,7 +2,7 @@
 
 #include "bomber.hpp"
 
-class aiBomber : public bomber {
+class aiBomber : public bomber, std::enable_shared_from_this<aiBomber> {
 
 protected:
 	std::string direction;

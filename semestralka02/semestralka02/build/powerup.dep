@@ -1,0 +1,2 @@
+build/powerup.o: src/powerup.cpp src/powerup.hpp src/baseBlock.hpp \
+ src/bomber.hpp src/movingBlock.hpp src/bomb.hpp src/grass.hpp

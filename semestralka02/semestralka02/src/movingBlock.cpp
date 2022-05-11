@@ -146,7 +146,13 @@ std::shared_ptr<baseBlock> movingBlock::ruin()
 	if (under != nullptr)
 		return under->ruin();
 
-	return std::shared_ptr<baseBlock>(this);
+
+	//throw(std::logic_error("moving block with nothing underneath"));
+	//return std::shared_ptr<grass>(new grass(x, y));
+	return std::make_shared<grass>(x, y);
+		
+
+	//pripadne vracet bool hodnotu znicitelnosti, pak ruinovat
 }
 
 void movingBlock::walkedOn(std::shared_ptr<baseBlock>& thing)
