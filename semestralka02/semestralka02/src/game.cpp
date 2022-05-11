@@ -53,6 +53,9 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
         case '#':
             return std::make_shared<indestructibleBlock>(collumn, row);
 
+        case 'W':
+            return std::make_shared<weakBlock>(collumn, row);
+
 
         default:
             return std::make_shared<grass>(collumn, row);

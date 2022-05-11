@@ -9,6 +9,9 @@
 
 class bomber: public std::enable_shared_from_this<bomber>, public movingBlock  {
 
+protected:
+	bool bombBuffer;
+
 public:
 	std::string playerName;
 

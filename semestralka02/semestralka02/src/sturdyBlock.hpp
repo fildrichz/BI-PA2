@@ -10,5 +10,5 @@ protected:
 
 public:
 	sturdyBlock(const unsigned int x, const unsigned int y);
-	std::shared_ptr<baseBlock> ruin() override;
+	std::shared_ptr<baseBlock> ruin();
 };

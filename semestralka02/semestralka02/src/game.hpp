@@ -13,6 +13,7 @@
 #include "indestructibleBlock.hpp"
 #include "ghost.hpp"
 #include "aiBomber.hpp"
+#include "weakBlock.hpp"
 
 class game {
 
