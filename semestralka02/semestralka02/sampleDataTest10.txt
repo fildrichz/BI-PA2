@@ -1,0 +1,8 @@
+10
+player
+Karel
+robot
+right
+bomb
+left
+down
