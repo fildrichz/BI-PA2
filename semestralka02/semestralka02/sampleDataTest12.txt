@@ -1,0 +1,13 @@
+12
+player
+Karel
+down
+down
+down
+down
+bomb
+up
+up
+up
+up
+up

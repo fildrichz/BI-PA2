@@ -144,7 +144,7 @@ bool program::run(){
 
 
 	if (currBestScore < achievedScore) {
-		std::cout << "saving new best score: " << currBestScore << std::endl;
+		std::cout << "saving new best score: " << achievedScore << std::endl;
 
 		if (!saveResults(achievedScore)) {
 			std::cout << "error while saving results" << std::endl;

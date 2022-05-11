@@ -1,7 +1,7 @@
 #include "bomber.hpp"
 
 
-bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), expSize(3), bombTimer(3), score(0)
+bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), expSize(3), bombTimer(5), score(0)
 {
 	/*
 	* 	std::cout << "enter bomber name: ";

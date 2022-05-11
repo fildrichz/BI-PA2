@@ -75,7 +75,7 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
 aiBomber::aiBomber(const unsigned int x, const unsigned int y): bomber(x,y)
 {
     mask = 'R';
-    bombTimer = 4;
+    bombTimer = 6;
     playerName = "aiBomber";
     direction = "up";
 }
