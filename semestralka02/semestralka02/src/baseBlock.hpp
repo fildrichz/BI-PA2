@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-class baseBlock {
+class baseBlock: std::enable_shared_from_this<baseBlock> {
 
 	bool explosionDebris;
 

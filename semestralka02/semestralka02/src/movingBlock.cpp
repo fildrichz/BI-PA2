@@ -144,7 +144,7 @@ std::shared_ptr<baseBlock> movingBlock::ruin()
 	isActive = false;
 
 	if (under != nullptr)
-		return under;
+		return under->ruin();
 
 	return std::shared_ptr<baseBlock>(this);
 }

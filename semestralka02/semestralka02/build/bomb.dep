@@ -1,0 +1,2 @@
+build/bomb.o: src/bomb.cpp src/bomb.hpp src/baseBlock.hpp src/bomber.hpp \
+ src/movingBlock.hpp src/powerup.hpp src/grass.hpp

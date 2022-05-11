@@ -22,19 +22,21 @@ unsigned int baseBlock::getY() const
 }
 
 baseBlock::baseBlock(const unsigned int xe, const unsigned int ye):
-	x(xe), y(ye), under(nullptr), passable(false), mask('@'), explosionDebris(false)
+	x(xe), y(ye), under(), passable(false), mask('@'), explosionDebris(false)
 {
 }
 
 baseBlock::baseBlock(const unsigned int xe, const unsigned int ye, const char& maske): 
-	x(xe), y(ye), under(nullptr), passable(false), mask(maske), explosionDebris(false)
+	x(xe), y(ye), under(), passable(false), mask(maske), explosionDebris(false)
 {
 }
 
 std::shared_ptr<baseBlock> baseBlock::ruin()
 {
+	std::cout << "ruining" << std::endl;
+
 	if (under != nullptr)
-		return under;
+		return under->ruin();
 
 	return std::shared_ptr<baseBlock>(this);
 }

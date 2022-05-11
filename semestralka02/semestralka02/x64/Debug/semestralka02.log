@@ -1,0 +1,21 @@
+﻿  semestralka02.cpp
+c1xx : fatal error C1083: Cannot open source file: 'semestralka02.cpp': No such file or directory
+  aiBomber.cpp
+  baseBlock.cpp
+  ghost.cpp
+  indestructibleBlock.cpp
+  robot.cpp
+  sturdyBlock.cpp
+  program.cpp
+C:\Users\Filip\source\repos\spidlfil\semestralka02\semestralka02\src\program.cpp(95,7): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  game.cpp
+C:\Users\Filip\source\repos\spidlfil\semestralka02\semestralka02\src\game.cpp(100,44): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\Filip\source\repos\spidlfil\semestralka02\semestralka02\src\game.cpp(103,88): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\Filip\source\repos\spidlfil\semestralka02\semestralka02\src\game.cpp(107,62): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\Filip\source\repos\spidlfil\semestralka02\semestralka02\src\game.cpp(126,60): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+  movingBlock.cpp
+  bomb.cpp
+  bomber.cpp
+  powerup.cpp
+  grass.cpp
+  Generating Code...

@@ -1,0 +1,2 @@
+build/movingBlock.o: src/movingBlock.cpp src/movingBlock.hpp \
+ src/baseBlock.hpp src/powerup.hpp src/grass.hpp
