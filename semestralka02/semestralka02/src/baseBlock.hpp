@@ -6,9 +6,6 @@
 
 class baseBlock {
 
-	bool explosionDebris;
-
-
 protected:
 
 	char mask;

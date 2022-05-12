@@ -19,9 +19,6 @@ void ghost::changeDirection()
 
 bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-
-	std::cout << "ghost checking front" << std::endl;
-
 	char realDir = direction[0];
 	std::vector<int> realTarget;
 	realTarget.push_back(x);
@@ -53,12 +50,7 @@ bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 
 	
 	else{
-
-		std::cout << "real target is" << realTarget[1] << " " << realTarget[0] << std::endl;
-
 		auto a = std::dynamic_pointer_cast<bomber>(board[realTarget[1]][realTarget[0]]);
-
-		std::cout << "casted" << std::endl;
 
 		if(a)
 			if (a->isPlayer()) {

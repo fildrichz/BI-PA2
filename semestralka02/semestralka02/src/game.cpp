@@ -1,4 +1,3 @@
-
 #include "game.hpp"
 
 std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, const int& row)
@@ -6,6 +5,7 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
 
 
     switch (entry){
+
         case 'B': {
 
             std::string choice;
@@ -20,7 +20,6 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
                 auto temp = std::make_shared<bomber>(collumn, row);
                 temp->playerName = pName;
                 movingBlocks.push_back(temp);
-                //temp->under = std::shared_ptr<grass>(new grass(collumn, row));
 
                 return temp;
             }
@@ -29,13 +28,11 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
                 auto robot = std::make_shared<aiBomber>(collumn, row);
                 movingBlocks.push_back(robot);
 
-                //robot->under = std::shared_ptr<grass>(new grass(collumn, row));
                 return robot;
             }
 
 
-
-            }
+        }
 
 
         case 'G':{
@@ -78,25 +75,18 @@ void game::load_screen()
     int collumn = 0;
     int row;
 
-
-
     for (std::vector< std::shared_ptr<baseBlock>> &entire_row : board)
     {
-        //std::cout << "row:";
         row = 0;
         for (std::shared_ptr<baseBlock> &single : entire_row)
         {
-            //std::cout << "a";
             std::cout<< single->display();
-            //std::cout << single->getX() << single->getY();
             row++;
         }
 
         std::cout << std::endl;
         collumn++;
     }
-
-    std::cout << "current game state" << std::endl;
 
 }
 
@@ -109,8 +99,6 @@ bool game::loadGrid(std::ifstream& f) {
     size_t collumn = 0;
     while (getline(f, line))
     {
-        std::cout << "got line: " << line << std::endl;
-
         std::vector< std::shared_ptr<baseBlock>> newrow;
         newrow.push_back(create('#', 0, row));
         for (collumn = 0; collumn < line.length(); collumn++)
@@ -181,13 +169,35 @@ int game::gameCleanUp() {
 
     }
     
-    std::cout << "The ghosts havw won!" << std::endl;
+    std::cout << "The ghosts have won!" << std::endl;
     return 0;
 }
 
 int game::doGame() {
 
     while (shouldContinue()) {
+
+        std::cout << "starting turn" << std::endl;
+
+        load_screen();
+
+
+        std::cout << "moving blocks" << std::endl;
+
+        for (auto & movingblock : movingBlocks) {
+            if (movingblock->active()) {
+
+                auto a = movingblock->move(board);
+
+                if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
+                    bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
+
+                
+
+                load_screen();
+            }
+
+        }
 
         std::cout << "bomb actions" << std::endl;
 
@@ -196,34 +206,7 @@ int game::doGame() {
         }
 
         load_screen();
-        //std::cout << "after bomb actions" << std::endl;
 
-
-        std::cout << "moving blocks" << std::endl;
-
-        //static int counter = 0;
-
-        for (auto & movingblock : movingBlocks) {
-            if (movingblock->active()) {
-
-                //if (counter++ == 2)
-                    //throw 15;
-
-                auto a = movingblock->move(board);
-
-
-
-                if (std::dynamic_pointer_cast<bomb>(a) != nullptr)
-                {
-                    std::cout << "adding bomb" << std::endl;
-                    bombs.push_back(std::dynamic_pointer_cast<bomb>(a));
-
-                }
-
-                load_screen();
-            }
-
-        }
 
     }
 
