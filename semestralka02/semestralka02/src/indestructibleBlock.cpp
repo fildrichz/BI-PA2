@@ -8,4 +8,3 @@ std::shared_ptr<baseBlock> indestructibleBlock::ruin()
 {
 	return shared_from_this();
 }
-

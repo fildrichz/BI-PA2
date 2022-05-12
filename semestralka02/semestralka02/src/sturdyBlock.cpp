@@ -1,6 +1,6 @@
 #include "sturdyBlock.hpp"
 
-sturdyBlock::sturdyBlock(const unsigned int x, const unsigned int y): baseBlock(x, y, 'X')
+sturdyBlock::sturdyBlock(const unsigned int x, const unsigned int y) : baseBlock(x, y, 'X')
 {
 	lives = 2;
 }

@@ -13,9 +13,7 @@ void ghost::changeDirection()
 		direction = "left";
 	else
 		direction = "up";
-
 }
-
 
 bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
@@ -48,30 +46,26 @@ bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 	if (!checkDirectionValidity(board, realTarget))
 		return false;
 
-	
-	else{
+	else {
 		auto a = std::dynamic_pointer_cast<bomber>(board[realTarget[1]][realTarget[0]]);
 
-		if(a)
+		if (a)
 			if (a->isPlayer()) {
 				board[realTarget[1]][realTarget[0]] = board[realTarget[1]][realTarget[0]]->ruin();
 				return true;
 			}
 	}
-		
 
 	return false;
-	
 }
 
-ghost::ghost(const unsigned int x, const unsigned int y): movingBlock(x,y)
+ghost::ghost(const unsigned int x, const unsigned int y) : movingBlock(x, y)
 {
 	mask = 'G';
 }
 
 std::shared_ptr<baseBlock> ghost::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-
 	checkFront(board);
 
 	if (!goInDirection(board, direction))

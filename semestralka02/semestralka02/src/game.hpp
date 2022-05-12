@@ -20,14 +20,12 @@
 #include "powerup4.hpp"
 
 class game {
-
 	std::vector< std::vector< std::shared_ptr<baseBlock>>> board;
 	std::vector< std::shared_ptr< movingBlock >> movingBlocks;
 	std::vector< std::shared_ptr< bomb >> bombs;
 	//std::vector< std::shared_ptr< bomber >> bombers;
 
 	unsigned int numOfActivePlayers;
-
 
 	std::shared_ptr<baseBlock> create(const char& entry, const int& collumn, const int& row);
 
@@ -37,19 +35,16 @@ class game {
 
 	int gameCleanUp();
 
-
 public:
-
 
 	game();
 
 	/**
 	 * Runs game after it is loaded.
-	 * 
+	 *
 	 * \return Highest score attained by player in this instance of game
 	 */
 	int doGame();
-
 
 	/**
 	 * Attemts to load grid into game instance.
@@ -63,5 +58,4 @@ public:
 		movingBlocks.clear();
 		bombs.clear();
 	}
-
 };

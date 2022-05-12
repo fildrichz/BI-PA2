@@ -1,11 +1,9 @@
 #include "bomber.hpp"
 
-
-bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), bombBuffer(false), expSize(3), bombTimer(5), canPlace(1), score(0)
+bomber::bomber(const unsigned int x, const unsigned int y) : movingBlock(x, y), bombBuffer(false), expSize(3), bombTimer(5), canPlace(1), score(0)
 {
 	mask = 'P';
 }
-
 
 std::string bomber::getName() const
 {
@@ -21,7 +19,6 @@ bool bomber::placeBomb(std::vector<std::vector<std::shared_ptr<baseBlock>>> boar
 	return true;
 }
 
-
 bool bomber::isPlayer() const
 {
 	return isActive;
@@ -29,19 +26,17 @@ bool bomber::isPlayer() const
 
 std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
-
 	std::string command;
 	std::cout << "give robot " << getName() << " orders" << std::endl;
 
 	std::cin >> command;
 
-	if(!goInDirection(board, command))
-		if ((command == "bomb")&&(canPlace>0)) {
+	if (!goInDirection(board, command))
+		if ((command == "bomb") && (canPlace > 0)) {
 			canPlace -= 1;
 			placeBomb(board);
 			return this->under;
 		}
-
 
 	std::shared_ptr<powerup> tempUnder = std::dynamic_pointer_cast<powerup>(under);
 	if (tempUnder) {
@@ -61,4 +56,3 @@ std::shared_ptr<baseBlock> bomber::ruin()
 
 	return std::make_shared<grass>(x, y);
 }
-

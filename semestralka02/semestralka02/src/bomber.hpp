@@ -7,8 +7,7 @@
 #include "powerup.hpp"
 #include "grass.hpp"
 
-class bomber: public std::enable_shared_from_this<bomber>, public movingBlock  {
-
+class bomber : public std::enable_shared_from_this<bomber>, public movingBlock {
 protected:
 	bool bombBuffer;
 
@@ -30,5 +29,4 @@ public:
 	virtual std::shared_ptr< baseBlock> move(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board); //override;
 
 	std::shared_ptr<baseBlock> ruin();
-
 };

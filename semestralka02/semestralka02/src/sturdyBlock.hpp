@@ -4,7 +4,6 @@
 #include "grass.hpp"
 
 class sturdyBlock : public baseBlock, public std::enable_shared_from_this<sturdyBlock> {
-
 protected:
 	int lives;
 

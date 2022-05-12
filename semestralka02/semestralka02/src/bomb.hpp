@@ -5,8 +5,7 @@
 
 class bomber;
 
-class bomb: public baseBlock, public std::enable_shared_from_this<bomb> {
-
+class bomb : public baseBlock, public std::enable_shared_from_this<bomb> {
 protected:
 	int timeLeft;
 	int explosionSize;

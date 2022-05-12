@@ -5,7 +5,6 @@
 #include <iostream>
 
 class baseBlock {
-
 protected:
 
 	char mask;
@@ -14,22 +13,17 @@ protected:
 
 public:
 
-
 	unsigned int x, y;
 
 	std::shared_ptr<baseBlock> under;
 
-	baseBlock(const unsigned int x, const unsigned int y, const char & mask = '@');
+	baseBlock(const unsigned int x, const unsigned int y, const char& mask = '@');
 
 	bool isPassable() const;
-
 
 	virtual std::shared_ptr<baseBlock> ruin() = 0;
 
 	virtual char display();
 
 	virtual ~baseBlock() = default;
-
-
-
 };

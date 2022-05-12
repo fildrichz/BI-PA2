@@ -1,16 +1,14 @@
-
 #include "movingBlock.hpp"
 #include "grass.hpp"
 
-movingBlock::movingBlock(const unsigned int x, const unsigned int y): baseBlock(x,y), isActive(true)
+movingBlock::movingBlock(const unsigned int x, const unsigned int y) : baseBlock(x, y), isActive(true)
 {
 	under = std::shared_ptr<grass>(new grass(x, y));
 }
 
-
 bool movingBlock::checkDirectionValidity(const std::vector<std::vector<std::shared_ptr<baseBlock>>>& board, const std::vector<int>& target) const
 {
-	if(target[0]<0)
+	if (target[0] < 0)
 		return false;
 
 	if (target[1] < 0)
@@ -24,7 +22,6 @@ bool movingBlock::checkDirectionValidity(const std::vector<std::vector<std::shar
 
 	std::cout << "move is valid" << std::endl;
 	return true;
-
 }
 
 bool movingBlock::active() const
@@ -40,31 +37,30 @@ std::vector<int> movingBlock::getRealTarget(const std::string& where) const
 	realTarget.push_back(y);
 
 	switch (realDir) {
-		case 'u': //up
-			realTarget[1] -= 1;
-			break;
+	case 'u': //up
+		realTarget[1] -= 1;
+		break;
 
-		case 'd': //down
-			realTarget[1] += 1;
-			break;
+	case 'd': //down
+		realTarget[1] += 1;
+		break;
 
-		case 'l': //left
-			realTarget[0] -= 1;
-			break;
+	case 'l': //left
+		realTarget[0] -= 1;
+		break;
 
-		case 'r': //right
-			realTarget[0] += 1;
-			break;
+	case 'r': //right
+		realTarget[0] += 1;
+		break;
 
-		default:
-			return realTarget;
+	default:
+		return realTarget;
 	}
 	return realTarget;
 }
 
 bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board, const std::string& where)
 {
-
 	std::vector<int>  realTarget = getRealTarget(where);
 
 	if (!checkDirectionValidity(board, realTarget))
@@ -73,9 +69,8 @@ bool movingBlock::goInDirection(std::vector<std::vector<std::shared_ptr<baseBloc
 	return go(board, realTarget);
 }
 
-bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & board, const std::vector<int>& target)
+bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>>& board, const std::vector<int>& target)
 {
-
 	if (!board[target[1]][target[0]]->isPassable()) {
 		return false;
 	}
@@ -88,7 +83,6 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 	}
 	return true;
 }
-
 
 bool movingBlock::isGhost() const
 {

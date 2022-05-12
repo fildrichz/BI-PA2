@@ -1,6 +1,5 @@
 #include "weakBlock.hpp"
 
-
 weakBlock::weakBlock(const unsigned int x, const unsigned int y) : baseBlock(x, y, 'W')
 {
 }

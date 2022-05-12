@@ -3,7 +3,6 @@
 #include "bomber.hpp"
 
 class aiBomber : public bomber {
-
 protected:
 	std::string direction;
 
@@ -20,5 +19,4 @@ public:
 	bool isPlayer() const; //override;
 
 	bool isGhost() const; //override;
-
 };

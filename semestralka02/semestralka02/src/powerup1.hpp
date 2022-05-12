@@ -1,8 +1,7 @@
 #pragma once
 #include "powerup.hpp"
 
-class powerup1: public powerup{
-
+class powerup1 : public powerup {
 public:
 
 	powerup1(const unsigned int xe, const unsigned int ye);

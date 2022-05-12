@@ -2,8 +2,7 @@
 
 #include "movingBlock.hpp"
 
-class ghost: public movingBlock, public std::enable_shared_from_this<ghost> {
-
+class ghost : public movingBlock, public std::enable_shared_from_this<ghost> {
 protected:
 	std::string direction;
 
@@ -21,5 +20,4 @@ public:
 	bool isGhost() const override;
 
 	std::shared_ptr<baseBlock> ruin();
-
 };

@@ -1,4 +1,3 @@
-
 #include "program.hpp"
 
 //private methods
@@ -22,7 +21,6 @@ bool program::startScreen() {
 }
 
 bool program::showLevels() {
-
 	int i = 1;
 
 	for (; i < 20; i++)
@@ -32,7 +30,7 @@ bool program::showLevels() {
 		std::ifstream f(level);
 		if (!f.is_open())
 			break;
-		
+
 		std::cout << "level " << i << " available" << std::endl;
 	}
 
@@ -44,21 +42,17 @@ bool program::showLevels() {
 	return true;
 }
 
-
-bool program::loadLevel(){
-	
+bool program::loadLevel() {
 	int userLvl;
 
 	std::cout << "Index of level you would like to play? ";
 
 	if (!(std::cin >> userLvl))
 		return false;
-	
-	
+
 	fileNameLevel += std::to_string(userLvl);
 
 	std::ifstream f(fileNameLevel);
-
 
 	if (!f.is_open())
 	{
@@ -74,7 +68,6 @@ bool program::loadLevel(){
 
 	std::cout << "got score" << std::endl;
 
-
 	if (!myGame.loadGrid(f))
 	{
 		if (f.is_open())
@@ -87,19 +80,17 @@ bool program::loadLevel(){
 	std::cout << "level loaded sucessfully" << std::endl;
 	if (f.is_open())
 		f.close();
-	
-	return true;
 
+	return true;
 }
 
-bool program::saveResults(const long int & newBest) {
+bool program::saveResults(const long int& newBest) {
 	char target[21] = { 0 };
 	std::sprintf(target, "%020ld", newBest);
 
 	std::fstream fs(fileNameLevel, std::fstream::in | std::fstream::out);
 	if (fs.is_open())
 	{
-
 		for (int i = 0; i < (int)(sizeof(target) - 1); i++)
 		{
 			fs.put(target[i]);
@@ -119,17 +110,15 @@ bool program::saveResults(const long int & newBest) {
 	return true;
 }
 
-
 //public methods
 
-program::program(): fileNameLevel("./src/levels/level"), currBestScore(0) {
+program::program() : fileNameLevel("./src/levels/level"), currBestScore(0) {
 }
 
 program::~program() {
 }
 
-bool program::run(){
-
+bool program::run() {
 	if (!startScreen()) {
 		std::cout << "error has occured while starting program " << std::endl;
 		return false;
@@ -142,7 +131,6 @@ bool program::run(){
 		return false;
 	}
 
-
 	if (currBestScore < achievedScore) {
 		std::cout << "saving new best score: " << achievedScore << std::endl;
 
@@ -151,11 +139,6 @@ bool program::run(){
 			return false;
 		}
 	}
-	
 
 	return true;
-
-
-
-
 }
