@@ -86,8 +86,11 @@ bool game::loadGrid(std::ifstream& f) {
 	std::string line;
 	size_t row = 1;
 	size_t collumn = 0;
+	unsigned int countlines = 0;
+
 	while (getline(f, line))
 	{
+		countlines++;
 		std::vector< std::shared_ptr<baseBlock>> newrow;
 		newrow.push_back(create('#', 0, row));
 		for (collumn = 0; collumn < line.length(); collumn++)
@@ -100,6 +103,19 @@ bool game::loadGrid(std::ifstream& f) {
 		board.push_back(newrow);
 		row++;
 	}
+
+	if (countlines == 0) {
+		std::cout << "no matrix to load" << std::endl;
+		return false;
+	}
+
+	unsigned int properLen = board[0].size();
+	for(const auto & row: board)
+		if (row.size() != properLen) {
+			std::cout << "matrix is not rectangle" << std::endl;
+			return false;
+		}
+		
 
 	collumn = 0;
 	std::vector< std::shared_ptr<baseBlock>> newrow;

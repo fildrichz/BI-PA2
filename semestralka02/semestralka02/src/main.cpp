@@ -9,14 +9,11 @@ int main()
 {
     program prog;
 
-    //try {
-        if (prog.run())
-            std::cout << "ran sucessfully" << std::endl;
-        else
-            std::cout << "error occured while running" << std::endl;
-    //}
-    //catch (int) {}
 
+    if (prog.run())
+        std::cout << "ran sucessfully" << std::endl;
+    else
+        std::cout << "error occured while running" << std::endl;
 
     std::cout << "ending now" << std::endl;
 }
