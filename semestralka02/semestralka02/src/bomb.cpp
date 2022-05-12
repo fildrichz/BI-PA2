@@ -41,10 +41,11 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
 	if (tick())
-		belongsTo->score += explode(board);
+		if(auto tempSharedPtr = belongsTo.lock())
+			tempSharedPtr->score += explode(board);
 }
 
-bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber> belongsToe) :
+bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomber> belongsToe) :
 	baseBlock(x, y, 'B'), timeLeft(timer), explosionSize(eSize), belongsTo(belongsToe)
 {
 	passable = false;
@@ -57,7 +58,9 @@ char bomb::display()
 std::shared_ptr<baseBlock> bomb::ruin()
 {
 	timeLeft = -2;
-	belongsTo->canPlace += 1;
+	if (auto tempSharedPtr = belongsTo.lock())
+		tempSharedPtr->canPlace += 1;
+	//belongsTo->canPlace += 1;
 
 	if (under != nullptr)
 		return under->ruin();

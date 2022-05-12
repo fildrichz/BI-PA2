@@ -25,7 +25,7 @@ protected:
 	/**
 	 * who placed bomb.
 	 */
-	std::shared_ptr<bomber> belongsTo;
+	std::weak_ptr<bomber> belongsTo;
 
 	/**
 	 * represents bomb tick.
@@ -53,7 +53,7 @@ public:
 	 * \param timer number of ticks to explosion
 	 * \param belongsTo who placed bomb
 	 */
-	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::shared_ptr<bomber> belongsTo);
+	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomber> belongsTo);
 
 	/**
 	 * handles all things bomb concerned, such as ticking, explosions and so on.

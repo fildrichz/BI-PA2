@@ -7,7 +7,7 @@ bomber::bomber(const unsigned int x, const unsigned int y) : movingBlock(x, y), 
 
 bool bomber::placeBomb(std::vector<std::vector<std::shared_ptr<baseBlock>>> board)
 {
-	std::shared_ptr<bomb> newBomb = std::make_shared<bomb>(x, y, expSize, bombTimer, shared_from_this());
+	std::shared_ptr<bomb> newBomb = std::make_shared<bomb>(x, y, expSize, bombTimer, weak_from_this());
 	newBomb->under = this->under;
 	this->under = newBomb;
 
