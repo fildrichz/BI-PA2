@@ -148,7 +148,7 @@ bool game::shouldContinue() const {
 int game::gameCleanUp() {
 	for (auto& object : movingBlocks) {
 		if (object->isPlayer()) {
-			std::cout << "player " << std::dynamic_pointer_cast<bomber>(object)->getName() << " has won!" << std::endl;
+			std::cout << "player " << std::dynamic_pointer_cast<bomber>(object)->playerName << " has won!" << std::endl;
 			std::cout << "their score is " << std::dynamic_pointer_cast<bomber>(object)->score << std::endl;
 			return  std::dynamic_pointer_cast<bomber>(object)->score;
 		}

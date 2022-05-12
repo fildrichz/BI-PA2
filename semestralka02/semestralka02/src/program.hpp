@@ -6,12 +6,24 @@
 #include <iostream>
 #include <stdio.h>
 
+/*
+Manages life of whole program
+*/
 class program {
-	/*
-	Manages life of whole program
-	*/
+	
+	/**
+	 * used to load level.
+	 */
 	std::string fileNameLevel;
+
+	/**
+	 * instance of bomberman.
+	 */
 	game myGame;
+
+	/**
+	 * loaded score for comparison.
+	 */
 	int currBestScore;
 
 	/**

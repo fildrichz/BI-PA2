@@ -1,13 +1,8 @@
 #include "bomber.hpp"
 
-bomber::bomber(const unsigned int x, const unsigned int y) : movingBlock(x, y), bombBuffer(false), expSize(3), bombTimer(5), canPlace(1), score(0)
+bomber::bomber(const unsigned int x, const unsigned int y) : movingBlock(x, y),  expSize(3), bombTimer(5), canPlace(1), score(0)
 {
 	mask = 'P';
-}
-
-std::string bomber::getName() const
-{
-	return playerName;
 }
 
 bool bomber::placeBomb(std::vector<std::vector<std::shared_ptr<baseBlock>>> board)
@@ -27,7 +22,7 @@ bool bomber::isPlayer() const
 std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
 	std::string command;
-	std::cout << "give robot " << getName() << " orders" << std::endl;
+	std::cout << "give robot " << playerName << " orders" << std::endl;
 
 	std::cin >> command;
 
