@@ -1,0 +1,11 @@
+3
+player
+Karel
+robot
+bomb
+stay
+stay
+stay
+stay
+stay
+stay
