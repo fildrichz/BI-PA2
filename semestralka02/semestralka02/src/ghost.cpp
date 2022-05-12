@@ -24,8 +24,8 @@ bool ghost::checkFront(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 
 	char realDir = direction[0];
 	std::vector<int> realTarget;
-	realTarget.push_back(this->getX());
-	realTarget.push_back(this->getY());
+	realTarget.push_back(x);
+	realTarget.push_back(y);
 
 	switch (realDir) {
 	case 'u': //up

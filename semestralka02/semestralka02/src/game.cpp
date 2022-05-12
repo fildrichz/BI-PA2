@@ -129,7 +129,7 @@ bool game::loadGrid(std::ifstream& f) {
     for (const auto & block : board[0])
     {
         collumn++;
-        newrow.push_back(create('#', block->getX(), 0));
+        newrow.push_back(create('#', block->x, 0));
     }
     board.insert(board.begin(), newrow);
 
@@ -138,7 +138,7 @@ bool game::loadGrid(std::ifstream& f) {
     for (const auto & block : board[0])
     {
         collumn++;
-        anotherrow.push_back(create('#', block->getX(), row));
+        anotherrow.push_back(create('#', block->x, row));
     }
     board.push_back(anotherrow);
 

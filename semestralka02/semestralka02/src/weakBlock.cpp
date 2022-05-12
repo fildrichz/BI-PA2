@@ -7,5 +7,5 @@ weakBlock::weakBlock(const unsigned int x, const unsigned int y) : baseBlock(x, 
 
 std::shared_ptr<baseBlock> weakBlock::ruin()
 {
-	return std::shared_ptr<baseBlock>(new grass(this->getX(), this->getY()));
+	return std::shared_ptr<baseBlock>(new grass(this->x, this->y));
 }

@@ -13,5 +13,5 @@ std::shared_ptr<baseBlock> sturdyBlock::ruin()
 		return shared_from_this();
 	}
 
-	return std::shared_ptr<baseBlock>(new grass(this->getX(), this->getY()));
+	return std::shared_ptr<baseBlock>(new grass(x, y));
 }

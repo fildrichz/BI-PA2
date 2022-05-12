@@ -22,9 +22,6 @@ public:
 
 	std::shared_ptr<baseBlock> under;
 
-	unsigned int getX() const;
-	unsigned int getY() const;
-
 	baseBlock(const unsigned int x, const unsigned int y, const char & mask = '@');
 
 	bool isPassable() const;

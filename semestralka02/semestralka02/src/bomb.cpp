@@ -17,8 +17,8 @@ int bomb::explode(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 
     int current_radius = explosionSize;
     size_t saved_row, saved_col;
-    saved_row = this->getX();
-    saved_col = this->getY();
+    saved_row = x;
+    saved_col = y;
 
     int bonusScore = 1;
 

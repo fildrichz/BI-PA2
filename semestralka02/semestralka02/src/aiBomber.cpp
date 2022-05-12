@@ -24,8 +24,8 @@ bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>
 
     int current_radius = expSize;
     size_t saved_row, saved_col;
-    saved_row = this->getX();
-    saved_col = this->getY();
+    saved_row = x;
+    saved_col = y;
 
 
     std::cout << "printing board" << std::endl;

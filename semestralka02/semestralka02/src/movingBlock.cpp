@@ -43,8 +43,8 @@ std::vector<int> movingBlock::getRealTarget(const std::string& where) const
 {
 	char realDir = where[0];
 	std::vector<int> realTarget;
-	realTarget.push_back(this->getX());
-	realTarget.push_back(this->getY());
+	realTarget.push_back(x);
+	realTarget.push_back(y);
 
 	switch (realDir) {
 		case 'u': //up
@@ -93,7 +93,7 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 	else {
 		//std::cout << "is passable" << std::endl;
 
-		std::cout << "moving coordinates are "<< this->getX() << " " << this->getY() << std::endl;
+		std::cout << "moving coordinates are "<< this->x << " " << this->y << std::endl;
 
 		/**
 		 * .
@@ -125,7 +125,7 @@ bool movingBlock::go(std::vector< std::vector< std::shared_ptr<baseBlock>>> & bo
 
 		std::cout << "went to: " << target[0] << target[1] << " which is " << board[target[1]][target[0]]->display() << std::endl;
 
-		std::cout << "moving coordinates are " << this->getX() << " " << this->getY() << std::endl;
+		std::cout << "moving coordinates are " << this->x << " " << this->y << std::endl;
 
 		//std::cout << "trying to go to: " << target[0] << target[1] << " which is " << board[target[0]][target[1]]->display() << std::endl;
 
