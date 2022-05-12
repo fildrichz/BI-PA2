@@ -14,6 +14,10 @@
 #include "ghost.hpp"
 #include "aiBomber.hpp"
 #include "weakBlock.hpp"
+#include "powerup1.hpp"
+#include "powerup2.hpp"
+#include "powerup3.hpp"
+#include "powerup4.hpp"
 
 class game {
 

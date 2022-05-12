@@ -4,9 +4,14 @@
 
 class bomber;
 
-class powerup : public baseBlock, std::enable_shared_from_this<powerup> {
+class powerup : public baseBlock {
 
 public:
-	virtual void effect(std::shared_ptr<bomber> whoWalked);
+
+	powerup(const unsigned int xe, const unsigned int ye, const char& maske);
+
+	virtual void effect(std::shared_ptr<bomber> whoWalked) = 0;
+
+	std::shared_ptr<baseBlock> ruin();
 
 };

@@ -15,8 +15,7 @@ protected:
 public:
 	std::string playerName;
 
-	int expSize;
-	int bombTimer;
+	int expSize, bombTimer, canPlace;
 
 	unsigned int score;
 

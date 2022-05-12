@@ -1,7 +1,7 @@
 #include "bomber.hpp"
 
 
-bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), bombBuffer(false), expSize(3), bombTimer(5), score(0)
+bomber::bomber(const unsigned int x, const unsigned int y): movingBlock(x,y), bombBuffer(false), expSize(3), bombTimer(5), canPlace(1), score(0)
 {
 	/*
 	* 	std::cout << "enter bomber name: ";
@@ -49,7 +49,8 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 	std::cin >> command;
 
 	if(!goInDirection(board, command))
-		if (command == "bomb") {
+		if ((command == "bomb")&&(canPlace>0)) {
+			canPlace -= 1;
 			placeBomb(board);
 			return this->under;
 		}

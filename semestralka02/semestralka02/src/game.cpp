@@ -56,6 +56,17 @@ std::shared_ptr<baseBlock> game::create(const char& entry, const int& collumn, c
         case 'W':
             return std::make_shared<weakBlock>(collumn, row);
 
+        case 'b':
+            return std::make_shared<powerup1>(collumn, row);
+
+        case 'r':
+            return std::make_shared<powerup2>(collumn, row);
+
+        case 'a':
+            return std::make_shared<powerup3>(collumn, row);
+
+        case 't':
+            return std::make_shared<powerup4>(collumn, row);
 
         default:
             return std::make_shared<grass>(collumn, row);

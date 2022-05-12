@@ -1,8 +1,15 @@
 #include "powerup.hpp"
-#include "bomber.hpp"
+#include "grass.hpp"
 
-void powerup::effect(std::shared_ptr<bomber> whoWalked)
+
+
+powerup::powerup(const unsigned int xe, const unsigned int ye, const char& maske): baseBlock(xe,ye, maske)
 {
-	//todo
-	return;
+	passable = true;
+}
+
+
+std::shared_ptr<baseBlock> powerup::ruin()
+{
+	return std::make_shared<grass>(x, y);
 }

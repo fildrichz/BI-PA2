@@ -77,8 +77,10 @@ void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 		    belongsTo->score += explode(board);
     */
 
-    if (tick())
-		belongsTo->score += explode(board);
+    if (tick()) {
+        belongsTo->score += explode(board);
+    }
+		
 
 }
 
@@ -96,6 +98,8 @@ char bomb::display()
 
 std::shared_ptr<baseBlock> bomb::ruin()
 {
+    timeLeft = -2;
+    belongsTo->canPlace += 1;
 
     if (under != nullptr)
         return under->ruin();

@@ -19,6 +19,9 @@ void aiBomber::changeDirection()
 
 bool aiBomber::checkForPlayer(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
 {
+    if(canPlace < 1)
+        return false;
+
     int current_radius = expSize;
     size_t saved_row, saved_col;
     saved_row = this->getX();
