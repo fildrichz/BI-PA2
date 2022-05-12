@@ -30,10 +30,12 @@ run: compile
 valgrind: compile
 	valgrind ./${LOGIN}
 
-doc: doc/index.html
-
-doc/index.html: Doxyfile DOCUMENTATION.md $(wildcard src/*)
-	doxygen Doxyfile
+doc: src/* Doxyfile
+	mv Doxyfile src
+	cd src && doxygen
+	mv -f src/Doxyfile .
+	rm -rf doc
+	mv -f src/html doc
 
 count:
 	wc -l src/*
@@ -41,6 +43,7 @@ count:
 clean:
 	rm -rf build doc
 	rm -f ${LOGIN} ${LOGIN}.zip
+	rm -rf latex
 
 zip: ${LOGIN}.zip
 
