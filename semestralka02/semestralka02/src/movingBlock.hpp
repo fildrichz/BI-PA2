@@ -33,8 +33,8 @@ protected:
 	/**
 	 * checks if move can be done.
 	 * 
-	 * \param board where movement happens
-	 * \param direction converted to easily managable 2d vector
+	 * \param board board where movement happens
+	 * \param target where we are going
 	 * \return true if movement can occur, false if out of bounds or similar condition
 	 */
 	bool checkDirectionValidity(const std::vector< std::vector< std::shared_ptr<baseBlock>>>& board, const std::vector<int>& target) const;
@@ -88,9 +88,9 @@ public:
 	virtual bool isPlayer() const;
 
 	/**
-	 * method for further interacting with things block moved on
+	 * allows block we walked on to change values of moving block.
 	 * 
-	 * \param what we walked on
+	 * \param thing that we walked on
 	 */
 	virtual void walkedOn(std::shared_ptr< baseBlock>& thing);
 };
