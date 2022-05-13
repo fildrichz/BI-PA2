@@ -1,22 +1,9 @@
 #include "bomber.hpp"
 
-bomber::bomber(const unsigned int x, const unsigned int y) : movingBlock(x, y),  expSize(3), bombTimer(5), canPlace(1), score(0)
+
+bomber::bomber(const unsigned int x, const unsigned int y) : bomberBase(x,y)
 {
 	mask = 'P';
-}
-
-bool bomber::placeBomb(std::vector<std::vector<std::shared_ptr<baseBlock>>> board)
-{
-	std::shared_ptr<bomb> newBomb = std::make_shared<bomb>(x, y, expSize, bombTimer, weak_from_this());
-	newBomb->under = this->under;
-	this->under = newBomb;
-
-	return true;
-}
-
-bool bomber::isPlayer() const
-{
-	return isActive;
 }
 
 std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<baseBlock>>>& board)
@@ -45,12 +32,8 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 	return nullptr;
 }
 
-std::shared_ptr<baseBlock> bomber::ruin()
+
+bool bomber::isPlayer() const
 {
-	isActive = false;
-
-	if (under != nullptr)
-		return under->ruin();
-
-	return std::make_shared<grass>(x, y);
+	return isActive;
 }

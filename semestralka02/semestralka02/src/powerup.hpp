@@ -2,7 +2,7 @@
 
 #include "baseBlock.hpp"
 
-class bomber;
+class bomberBase;
 
 /**
  * base for powerups.
@@ -24,7 +24,7 @@ public:
 	 * 
 	 * \param whoWalked
 	 */
-	virtual void effect(std::shared_ptr<bomber> whoWalked) = 0;
+	virtual void effect(std::shared_ptr<bomberBase> whoWalked) = 0;
 
 	/**
 	 * can be destroyed by default.

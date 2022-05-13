@@ -1,5 +1,6 @@
 #pragma once
 #include "powerup.hpp"
+#include "bomberBase.hpp"
 
 /**
 * third powerup.
@@ -21,5 +22,5 @@ public:
 	*
 	* \param whoWalked
 	*/
-	virtual void effect(std::shared_ptr<bomber> whoWalked);
+	virtual void effect(std::shared_ptr<bomberBase> whoWalked);
 };

@@ -21,5 +21,5 @@ public:
 	*
 	* \param whoWalked
 	*/
-	virtual void effect(std::shared_ptr<bomber> whoWalked);
+	virtual void effect(std::shared_ptr<bomberBase> whoWalked);
 };

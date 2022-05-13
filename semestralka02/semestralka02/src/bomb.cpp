@@ -45,7 +45,7 @@ void bomb::bombProcess(std::vector<std::vector<std::shared_ptr<baseBlock>>>& boa
 			tempSharedPtr->score += explode(board);
 }
 
-bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomber> belongsToe) :
+bomb::bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomberBase> belongsToe) :
 	baseBlock(x, y, 'B'), timeLeft(timer), explosionSize(eSize), belongsTo(belongsToe)
 {
 	passable = false;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "baseBlock.hpp"
-#include "bomber.hpp"
+#include "bomberBase.hpp"
 
 class bomber;
 
@@ -25,7 +25,7 @@ protected:
 	/**
 	 * who placed bomb.
 	 */
-	std::weak_ptr<bomber> belongsTo;
+	std::weak_ptr<bomberBase> belongsTo;
 
 	/**
 	 * represents bomb tick.
@@ -53,7 +53,7 @@ public:
 	 * \param timer number of ticks to explosion
 	 * \param belongsTo who placed bomb
 	 */
-	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomber> belongsTo);
+	bomb(const unsigned int x, const unsigned int y, const int eSize, const int timer, std::weak_ptr<bomberBase> belongsTo);
 
 	/**
 	 * handles all things bomb concerned, such as ticking, explosions and so on.

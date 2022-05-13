@@ -1,11 +1,11 @@
 #pragma once
 
-#include "bomber.hpp"
+#include "bomberBase.hpp"
 
 /**
  * class implementing bomberman guided by computer.
  */
-class aiBomber : public bomber {
+class aiBomber : public bomberBase {
 protected:
 
 	/**
