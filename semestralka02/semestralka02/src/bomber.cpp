@@ -26,6 +26,9 @@ std::shared_ptr<baseBlock> bomber::move(std::vector<std::vector<std::shared_ptr<
 
 	std::cin >> command;
 
+	if (command == "")
+		throw std::runtime_error("unexpected blank input");
+
 	if (!goInDirection(board, command))
 		if ((command == "bomb") && (canPlace > 0)) {
 			canPlace -= 1;
